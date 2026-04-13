@@ -16,8 +16,7 @@ bool is_sorted(const std::vector<T>& vec)
 
 template<typename T>
 void bubblesort(std::vector<T>& vec)
-{	// if (vec.size() == 0) { return vec; }		/*ok ma è inutile tanto i vettori vuoti non entrano nel ciclo --> ho messo i+1 nella condizione del for; inoltre è già ordinato */
-
+{	if (vec.size() == 0) { return; }	
 	//va da 0 a n-2 (compresi) perchè servono n-1 controlli per ordinare
 	for (size_t i=0; i + 1 < vec.size(); i++)		//uso size_t cosi lo considero unsigned
 	
@@ -31,7 +30,9 @@ void bubblesort(std::vector<T>& vec)
 
 template<typename T>
 void selectionsort(std::vector<T>& vec)
-{	for (size_t i=0; i < vec.size()-1; i++) 	//servono n-1 controlli per ordinare
+{	if (vec.size() == 0) { return; }	
+
+	for (size_t i=0; i < vec.size()-1; i++) 	//servono n-1 controlli per ordinare
 	{	size_t min_index = i;
 		for (size_t j=i+1; j < vec.size(); j++) 
 		{ if (vec[j] < vec[min_index]) {min_index = j; }  }
@@ -42,7 +43,9 @@ void selectionsort(std::vector<T>& vec)
 
 template<typename T>
 void insertionsort(std::vector<T>& vec)
-{	for (size_t i=1; i < vec.size(); i++)
+{	if (vec.size() == 0) { return; }	
+	
+	for (size_t i=1; i < vec.size(); i++)
 	{	T value = vec[i];
 		int j = i-1;		//meglio usare int perchè size_t non può diventare negativo e dopo ho un while con ultima operazione di sottrazione, non un for che mi da' sicurezza
 		while (j >= 0 && vec[j] > value) 
