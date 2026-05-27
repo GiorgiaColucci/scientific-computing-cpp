@@ -2,13 +2,13 @@
 #include <iostream>
 #include <cstdlib> 	//per i risultati del test
 
-    /* Funzione di stampa dell'esito del test e aggiornamento il flag globale di fallimento */
-	void esito(const std::string& nome, bool ok, bool& tutti_ok) {
-    	std::cout << nome << ": " << (ok ? "successo" : "FALLIMENTO") << "\n\n";
-    	if (!ok) { tutti_ok = false; }
-	}
+/* Funzione di stampa dell'esito del test e aggiornamento il flag globale di fallimento */
+void esito(const std::string& nome, bool ok, bool& tutti_ok) {
+    std::cout << nome << ": " << (ok ? "successo" : "FALLIMENTO") << "\n\n";
+    if (!ok) { tutti_ok = false; }
+}
 	
-	//faccio questa funzione esito con poi i booleani in modo che se si ferma a uno dei test intermedi non smette di andare avanti ma continua con gli altri test e poi solo alla fine mi dice ciò che era fallito
+//faccio questa funzione esito con poi i booleani in modo che se si ferma a uno dei test intermedi non smette di andare avanti ma continua con gli altri test e poi solo alla fine mi dice ciò che era fallito
  
 int main() {
 	bool tutti_ok = true;
