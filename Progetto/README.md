@@ -27,40 +27,14 @@ Dato un circuito descritto in una **netlist**, il programma:
 - **g++** o **clang++** con supporto a C++20
 - **Eigen** ≥ 3.3 (libreria header-only per algebra lineare)
 
-## Documentazione
+## Compilazione
 
-La documentazione completa del progetto è disponibile nei file:
-
-- `progetto.pdf`
-- `Presentazione.pdf`
-
-## Tecniche utilizzate
-
-Durante lo sviluppo sono stati implementati e utilizzati diversi algoritmi studiati nel corso:
-
-### Teoria dei grafi
-
-- Depth First Search (DFS)
-- Costruzione di alberi e coalberi
-- Ricerca di cicli fondamentali
-- Algoritmo di Dijkstra
-- Algoritmo di De Pina per la costruzione di una Minimum Cycle Basis
-
-### Algebra lineare numerica
-
-- Gradiente Coniugato
-- Risoluzione di sistemi lineari mediante Eigen
-
-## Contenuti del corso applicati
-
-- Programmazione C++
-- Strutture dati
-- Teoria dei grafi
-- Cammini minimi
-- Basi di cicli
-- Algebra lineare numerica
-- Metodi iterativi
-- Modellazione di circuiti elettrici
+```bash
+mkdir build
+cd build
+cmake ..
+make
+```
 
 ## Esecuzione
 
@@ -89,35 +63,6 @@ Rispondendo `Y` vengono creati `grafo_principale.dot` (il grafo del circuito) e
 ```
 dot -Tpng grafo_principale.dot -o grafo.png
 dot -Tpng coalbero.dot -o coalbero.png
-```
-
-### Esempio
-
-Con una netlist `prova.txt`:
-```
-V1 30 1 4
-V2 40 3 5
-R1 4  4 2
-R2 10 1 2
-R3 30 1 3
-R4 10 3 2
-R5 4  2 5
-```
-
-`./main prova.txt` produce un output del tipo:
-```
-Netlist:    prova.txt
-Nodi:       5
-Componenti: 7
-Maglie:     3
-Metodo:     De Pina
-
---- RISULTATI CIRCUITO ---
-R1: V =  8 volts, I =  2 amps
-R2: V = 22 volts, I = 2.2 amps
-R3: V = -6 volts, I = -0.2 amps
-R4: V = -28 volts, I = -2.8 amps
-R5: V = 12 volts, I =  3 amps
 ```
 
 ## Formato della netlist
@@ -153,6 +98,35 @@ Restituisce **errore** (e termina) per:
 - nodo decimale non riconducibile a un intero;
 - resistenza pari a zero.
 - nodi decimali non riconducibili a interi
+
+## Esempio
+
+Con una netlist `prova.txt`:
+```
+V1 30 1 4
+V2 40 3 5
+R1 4  4 2
+R2 10 1 2
+R3 30 1 3
+R4 10 3 2
+R5 4  2 5
+```
+
+`./main prova.txt` produce un output del tipo:
+```
+Netlist:    prova.txt
+Nodi:       5
+Componenti: 7
+Maglie:     3
+Metodo:     De Pina
+
+--- RISULTATI CIRCUITO ---
+R1: V =  8 volts, I =  2 amps
+R2: V = 22 volts, I = 2.2 amps
+R3: V = -6 volts, I = -0.2 amps
+R4: V = -28 volts, I = -2.8 amps
+R5: V = 12 volts, I =  3 amps
+```
 
 ## Struttura del progetto
 
@@ -219,6 +193,41 @@ Sono implementati **due algoritmi alternativi** (selezionabili a runtime):
 - **De Pina**: usa algebra lineare su vettori booleani per
   costruire una **base di cicli minimi**. Internamente utilizza un *lifting*
   del grafo e Dijkstra per trovare i cicli più corti.
+
+## Tecniche utilizzate
+
+Durante lo sviluppo sono stati implementati e utilizzati diversi algoritmi studiati nel corso:
+
+### Teoria dei grafi
+
+- Depth First Search (DFS)
+- Costruzione di alberi e coalberi
+- Ricerca di cicli fondamentali
+- Algoritmo di Dijkstra
+- Algoritmo di De Pina per la costruzione di una Minimum Cycle Basis
+
+### Algebra lineare numerica
+
+- Metodi iterativi
+- Gradiente Coniugato
+- Risoluzione di sistemi lineari mediante Eigen
+
+## Testing
+
+Il progetto include test dedicati a:
+
+- parser della netlist;
+- costruzione del grafo;
+- algoritmo di De Pina.
+
+I test sono raccolti nella cartella `tests/`.
+
+## Documentazione aggiuntiva
+
+La documentazione completa del progetto è disponibile nei file:
+
+- `progetto.pdf`
+- `Presentazione.pdf`
 
 
 ## Note
