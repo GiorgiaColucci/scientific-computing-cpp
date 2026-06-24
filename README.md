@@ -37,19 +37,19 @@ La struttura del repository è organizzata in modo logico e pulito per separare 
 
 La cartella contiene le esercitazioni sviluppate durante il corso, organizzate come un percorso progressivo che parte dai fondamenti del linguaggio C++ per arrivare a strutture dati avanzate, algoritmi su grafi e metodi numerici per il calcolo scientifico.
 
-I temi affrontati includono:
+I temi affrontati includono l'implementazione pratica di::
 
-- Fondamenti del linguaggio C++ e gestione della memoria (puntatori e smart pointers)
+- Gestione della memoria tramite puntatori e smart pointers
 - Organizzazione del codice in file sorgente e header.
 - Programmazione orientata agli oggetti (classi e strutture dati personalizzate, costruttori, distruttori)
 - Template e generic programming
-- Standard Template Library
-- Organizzazione di progetti e compilazione con CMake
+- Utilizzo della Standard Template Library
+- Organizzazione e compilazione di progetti con CMake
 - Strutture dati e algoritmi su grafi: BFS, DFS e Dijkstra
-- Algebra lineare numerica con Eigen
-- Metodi iterativi per sistemi lineari
-- Algoritmi avanzati per basi di cicli minimi (De Pina)
-- Visualizzazione di grafi tramite GraphViz (per esempi vedere nella build del prpgetto le immagini .png)
+- Operazioni di algebra lineare numerica con Eigen
+- Metodi iterativi per la risoluzione di sistemi lineari
+- Algoritmi avanzati per la costruzione di basi di cicli minimi (De Pina)
+- Esportazione e visualizzazione di grafi tramite GraphViz (si vedano gli esempi prodotti nella cartella `build/` del progetto)
 
 ### 2. 🚀 Progetto Finale (`/Progetto`)
 Il nucleo principale del repository, che rappresenta l'applicazione pratica dei concetti del corso su un problema di calcolo scientifico reale.
