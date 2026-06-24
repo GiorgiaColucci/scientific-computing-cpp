@@ -1,6 +1,7 @@
 # Metodo delle Correnti di Maglia - PCS 2026
 
 Progetto di **Programmazione e Calcolo Scientifico** (a.a. 2025–2026).
+Questo progetto dimostra come strumenti di teoria dei grafi e algebra lineare possano essere combinati per risolvere problemi reali di analisi circuitale in modo automatico ed efficiente.
 Implementazione in C++ del **metodo delle correnti di maglia** per la risoluzione
 di semplici circuiti elettrici composti da resistori e generatori ideali di
 tensione, sfruttando strumenti di teoria dei grafi e algebra lineare numerica.
@@ -8,7 +9,7 @@ tensione, sfruttando strumenti di teoria dei grafi e algebra lineare numerica.
 ## Panoramica
 
 Dato un circuito descritto in una **netlist**, il programma:
-1. legge e valida la netlist che descrie il circuito;
+1. legge e valida la netlist che descrive il circuito;
 2. costruisce il grafo associato;
 3. individua le maglie (cicli del grafo) con due algoritmi alternativi:
    **DFS + coalbero** (cicli fondamentali) oppure **De Pina** (cicli minimi);
@@ -53,7 +54,7 @@ Dopo aver stampato i risultati, chiede anche se esportare i grafi in formato DOT
 
 ```
 Vuoi stampare i grafi?
-[Y] per si
+[Y] per sì
 [N] per no
 ```
 
@@ -166,7 +167,7 @@ pcs2026/
     |-- test_de_pina_helper.hpp     # supporto al test di De Pina
 ```
 
-## Fondaenti teorici e algoritmi implementati
+## Fondamenti teorici 
 
 ### Metodo delle correnti di maglia
 
@@ -177,7 +178,7 @@ Dato un grafo del circuito con `m` resistori e `n` maglie:
    percorrenza), `0` altrimenti.
 2. **R** ∈ ℝ^(m×m) — matrice diagonale delle resistenze.
 3. **v** ∈ ℝ^n — vettore dei termini noti dato dai contributi dei generatori.
-4. Si risolve il sistema lineare **(BᵀRB) i = v** ottenendo le correnti di
+4. Si risolve il sistema lineare **(BᵀRB) i = v** con metodo del Gradiente Coniugato ottenendo le correnti di
    maglia.
 5. Le tensioni sui resistori si calcolano come **V_R = R B i**.
 
@@ -196,25 +197,7 @@ minimi.
 #### Algoritmo di De Pina 
 Usa algebra lineare su vettori booleani per
 costruire una **base di cicli minimi**. Internamente utilizza un *lifting*
-del grafo e Dijkstra per trovare i cicli più corti.
-
-## Tecniche utilizzate
-
-Durante lo sviluppo sono stati implementati e utilizzati diversi algoritmi studiati nel corso:
-
-### Teoria dei grafi
-
-- Depth First Search (DFS)
-- Costruzione di alberi e coalberi
-- Ricerca di cicli fondamentali
-- Algoritmo di Dijkstra
-- Algoritmo di De Pina per la costruzione di una Minimum Cycle Basis
-
-### Algebra lineare numerica
-
-- Metodi iterativi
-- Gradiente Coniugato
-- Risoluzione di sistemi lineari mediante Eigen
+del grafo e algoritmo di Dijkstra per trovare i cicli più corti.
 
 ## Testing
 
