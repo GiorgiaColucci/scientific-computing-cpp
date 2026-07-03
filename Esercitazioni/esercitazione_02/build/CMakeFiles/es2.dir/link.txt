@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/es2.dir/link.d CMakeFiles/es2.dir/ese2.cpp.o -o es2

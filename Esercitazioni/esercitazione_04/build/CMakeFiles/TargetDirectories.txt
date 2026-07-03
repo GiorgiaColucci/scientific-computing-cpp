@@ -1,7 +1,0 @@
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/measure_sorts.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/test_bubblesort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/test_insertionsort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/test_selectionsort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/test.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/edit_cache.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione4/build/CMakeFiles/rebuild_cache.dir

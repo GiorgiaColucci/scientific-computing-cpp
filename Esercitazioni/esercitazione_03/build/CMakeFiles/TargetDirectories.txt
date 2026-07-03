@@ -1,4 +1,0 @@
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione3/build/CMakeFiles/eseguibile3.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione3/build/CMakeFiles/eseguibile3_prova.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione3/build/CMakeFiles/edit_cache.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione3/build/CMakeFiles/rebuild_cache.dir

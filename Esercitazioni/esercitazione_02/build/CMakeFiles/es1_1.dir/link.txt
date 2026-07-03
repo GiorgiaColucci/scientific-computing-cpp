@@ -1,1 +1,0 @@
-/usr/bin/c++ -Wl,--dependency-file=CMakeFiles/es1_1.dir/link.d CMakeFiles/es1_1.dir/ese1_parte1.cpp.o -o es1_1
