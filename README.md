@@ -49,7 +49,7 @@ I temi affrontati includono l'implementazione pratica di::
 - Operazioni di algebra lineare numerica con Eigen
 - Metodi iterativi per la risoluzione di sistemi lineari
 - Algoritmi avanzati per la costruzione di basi di cicli minimi (De Pina)
-- Esportazione e visualizzazione di grafi tramite GraphViz (si vedano gli esempi prodotti nella cartella `build/` del progetto)
+- Esportazione e visualizzazione di grafi tramite GraphViz (si vedano gli esempi prodotti nella cartella `build/` del progetto o dell'esercitazione 09)
 
 ### 2. 🚀 Progetto Finale (`/Progetto`)
 Il nucleo principale del repository, che rappresenta l'applicazione pratica dei concetti del corso su un problema di calcolo scientifico reale.
