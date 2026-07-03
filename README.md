@@ -10,7 +10,7 @@ L'obiettivo principale del corso è l'acquisizione di competenze avanzate nel li
 - **Linguaggio principale:** C++ (standard moderni), con Template Programming e utilizzo della STL
 - **Altri linguaggi:** MATLAB (per analisi e validazione dati)
 - **Algebra lineare e calcolo matriciale:** libreria Eigen
-- **Build Systems:** CMake, Makefile
+- **Build Systems:** CMake, Makefile; build in modalità debug e release
 - **Ambiente di sviluppo:** Version control tramite Git/GitHub
 - **Esportazione e visualizzazione dei grafi:** GraphViz (formato DOT).
 
