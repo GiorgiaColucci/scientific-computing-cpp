@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Wshadow -Wl,--dependency-file=CMakeFiles/esercitazione1.dir/link.d CMakeFiles/esercitazione1.dir/ese1.cpp.o CMakeFiles/esercitazione1.dir/media.cpp.o -o esercitazione1
