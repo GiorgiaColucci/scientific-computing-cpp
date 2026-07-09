@@ -1,7 +1,0 @@
-graph G {
- A -- B;
- A -- D;
- C -- E;
- D -- E;
- E -- F;
-}
