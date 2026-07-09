@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/pcsdocker/Data/pcs2026/include -isystem /usr/include/eigen3
+CXX_INCLUDES = -I/home/pcsdocker/Data/PCS_2026/Progetto/include -isystem /usr/include/eigen3
 
 CXX_FLAGS =  -Wall -Wextra -Wshadow -Werror=vla -std=gnu++20
 

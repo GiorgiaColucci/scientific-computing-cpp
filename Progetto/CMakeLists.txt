@@ -21,7 +21,7 @@ set(LIB_SOURCES
 )
 
 
-add_executable(main main.cpp ${LIB_SOURCES} src/cd_gradient.cpp src/grafo_construction.cpp)
+add_executable(main main.cpp ${LIB_SOURCES} src/conjugate_gradient.cpp src/graph_construction.cpp)
 target_link_libraries(main PRIVATE Eigen3::Eigen)
 
 enable_testing()
@@ -31,8 +31,8 @@ enable_testing()
 add_executable(test_parser test/test_parser.cpp ${LIB_SOURCES})
 add_test(NAME parser COMMAND test_parser)
 
-add_executable(test_grafo test/test_grafo.cpp ${LIB_SOURCES} src/grafo_construction.cpp)
-add_test(NAME grafo COMMAND test_grafo
+add_executable(test_graph test/test_graph.cpp ${LIB_SOURCES} src/graph_construction.cpp)
+add_test(NAME graph COMMAND test_graph
          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 ## Si fa il link a eigen per sicurezza, anche se usa solo template header
@@ -40,10 +40,10 @@ add_executable(test_de_pina test/test_de_pina.cpp)
 target_link_libraries(test_de_pina PRIVATE Eigen3::Eigen)
 add_test(NAME depina COMMAND test_de_pina)
 
-add_executable(test_cicliDFS test/test_cicliDFS.cpp)
-add_test(NAME cicli_dfs COMMAND test_cicliDFS)
+add_executable(test_cycles_DFS test/test_cycles_DFS.cpp)
+add_test(NAME cycles_dfs COMMAND test_cycles_DFS)
 
-add_executable(test_solve test/test_solve.cpp ${LIB_SOURCES} src/grafo_construction.cpp src/cd_gradient.cpp)
+add_executable(test_solve test/test_solve.cpp ${LIB_SOURCES} src/graph_construction.cpp src/conjugate_gradient.cpp)
 target_link_libraries(test_solve PRIVATE Eigen3::Eigen)
 add_test(NAME solve COMMAND test_solve
          WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})

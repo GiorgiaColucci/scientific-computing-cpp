@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/pcsdocker/Data/pcs2026/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/src/cd_gradient.cpp" "CMakeFiles/main.dir/src/cd_gradient.cpp.o" "gcc" "CMakeFiles/main.dir/src/cd_gradient.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/src/grafo_construction.cpp" "CMakeFiles/main.dir/src/grafo_construction.cpp.o" "gcc" "CMakeFiles/main.dir/src/grafo_construction.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp" "CMakeFiles/main.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/main.dir/src/netlist_parser.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/conjugate_gradient.cpp" "CMakeFiles/main.dir/src/conjugate_gradient.cpp.o" "gcc" "CMakeFiles/main.dir/src/conjugate_gradient.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/graph_construction.cpp" "CMakeFiles/main.dir/src/graph_construction.cpp.o" "gcc" "CMakeFiles/main.dir/src/graph_construction.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp" "CMakeFiles/main.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/main.dir/src/netlist_parser.cpp.o.d"
   "" "main" "gcc" "CMakeFiles/main.dir/link.d"
   )
 

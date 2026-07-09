@@ -1,7 +1,7 @@
 CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o: \
- /home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp \
  /usr/include/stdc-predef.h \
- /home/pcsdocker/Data/pcs2026/include/netlist_struct.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/netlist_struct.hpp \
  /usr/include/c++/14/string /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/os_defines.h \

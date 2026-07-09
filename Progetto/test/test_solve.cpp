@@ -1,6 +1,6 @@
 #include "netlist_struct.hpp"
-#include "costruzione_grafo.hpp"
-#include "cicli_DFS.hpp"
+#include "graph_construction.hpp"
+#include "cycles_DFS.hpp"
 #include "de_pina.hpp"
 #include "solve.hpp"
 
@@ -9,11 +9,11 @@
 #include <iostream>
 #include <cmath>
 
-/* Il test
-    1) Legge la netlist da 'prova.txt
-    2) Costruisce il grafo
-    3) Calcola i cicli
-    4) Risolve il sistema
+/* The test
+    1) Read the netlist from 'sample.txt
+    2) Construct the graph
+    3) Calculates the cycles
+    4) Solves the system
     5) Verifica che le tensioni e correnti coincidano con valori attesi 
     
      R1: V =  8 volts, I =  2.0 amps
@@ -23,7 +23,7 @@
      R5: V = 12 volts, I =  3.0 amps
 */
 
-static const std::string NETLIST = "prova.txt";
+static const std::string NETLIST = "sample.txt";
 
 // Leggo netlist e dichiaro le variabili globali di grafo + mappa; inizializzo
 // poi in main()

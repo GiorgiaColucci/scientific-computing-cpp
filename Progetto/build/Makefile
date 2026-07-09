@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pcsdocker/Data/pcs2026
+CMAKE_SOURCE_DIR = /home/pcsdocker/Data/PCS_2026/Progetto
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pcsdocker/Data/pcs2026/build
+CMAKE_BINARY_DIR = /home/pcsdocker/Data/PCS_2026/Progetto/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -97,9 +97,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/pcs2026/build/CMakeFiles /home/pcsdocker/Data/pcs2026/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles /home/pcsdocker/Data/PCS_2026/Progetto/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/pcs2026/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -153,17 +153,17 @@ test_parser/fast:
 .PHONY : test_parser/fast
 
 #=============================================================================
-# Target rules for targets named test_grafo
+# Target rules for targets named test_graph
 
 # Build rule for target.
-test_grafo: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_grafo
-.PHONY : test_grafo
+test_graph: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_graph
+.PHONY : test_graph
 
 # fast build rule for target.
-test_grafo/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/build
-.PHONY : test_grafo/fast
+test_graph/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/build
+.PHONY : test_graph/fast
 
 #=============================================================================
 # Target rules for targets named test_de_pina
@@ -179,17 +179,17 @@ test_de_pina/fast:
 .PHONY : test_de_pina/fast
 
 #=============================================================================
-# Target rules for targets named test_cicliDFS
+# Target rules for targets named test_cycles_DFS
 
 # Build rule for target.
-test_cicliDFS: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_cicliDFS
-.PHONY : test_cicliDFS
+test_cycles_DFS: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_cycles_DFS
+.PHONY : test_cycles_DFS
 
 # fast build rule for target.
-test_cicliDFS/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cicliDFS.dir/build.make CMakeFiles/test_cicliDFS.dir/build
-.PHONY : test_cicliDFS/fast
+test_cycles_DFS/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cycles_DFS.dir/build.make CMakeFiles/test_cycles_DFS.dir/build
+.PHONY : test_cycles_DFS/fast
 
 #=============================================================================
 # Target rules for targets named test_solve
@@ -228,62 +228,62 @@ main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-src/cd_gradient.o: src/cd_gradient.cpp.o
-.PHONY : src/cd_gradient.o
+src/conjugate_gradient.o: src/conjugate_gradient.cpp.o
+.PHONY : src/conjugate_gradient.o
 
 # target to build an object file
-src/cd_gradient.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/cd_gradient.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o
-.PHONY : src/cd_gradient.cpp.o
+src/conjugate_gradient.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/conjugate_gradient.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o
+.PHONY : src/conjugate_gradient.cpp.o
 
-src/cd_gradient.i: src/cd_gradient.cpp.i
-.PHONY : src/cd_gradient.i
+src/conjugate_gradient.i: src/conjugate_gradient.cpp.i
+.PHONY : src/conjugate_gradient.i
 
 # target to preprocess a source file
-src/cd_gradient.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/cd_gradient.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/cd_gradient.cpp.i
-.PHONY : src/cd_gradient.cpp.i
+src/conjugate_gradient.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/conjugate_gradient.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.i
+.PHONY : src/conjugate_gradient.cpp.i
 
-src/cd_gradient.s: src/cd_gradient.cpp.s
-.PHONY : src/cd_gradient.s
+src/conjugate_gradient.s: src/conjugate_gradient.cpp.s
+.PHONY : src/conjugate_gradient.s
 
 # target to generate assembly for a file
-src/cd_gradient.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/cd_gradient.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/cd_gradient.cpp.s
-.PHONY : src/cd_gradient.cpp.s
+src/conjugate_gradient.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/conjugate_gradient.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.s
+.PHONY : src/conjugate_gradient.cpp.s
 
-src/grafo_construction.o: src/grafo_construction.cpp.o
-.PHONY : src/grafo_construction.o
+src/graph_construction.o: src/graph_construction.cpp.o
+.PHONY : src/graph_construction.o
 
 # target to build an object file
-src/grafo_construction.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/grafo_construction.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/grafo_construction.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o
-.PHONY : src/grafo_construction.cpp.o
+src/graph_construction.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/graph_construction.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/graph_construction.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/graph_construction.cpp.o
+.PHONY : src/graph_construction.cpp.o
 
-src/grafo_construction.i: src/grafo_construction.cpp.i
-.PHONY : src/grafo_construction.i
+src/graph_construction.i: src/graph_construction.cpp.i
+.PHONY : src/graph_construction.i
 
 # target to preprocess a source file
-src/grafo_construction.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/grafo_construction.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/grafo_construction.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/grafo_construction.cpp.i
-.PHONY : src/grafo_construction.cpp.i
+src/graph_construction.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/graph_construction.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/graph_construction.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/graph_construction.cpp.i
+.PHONY : src/graph_construction.cpp.i
 
-src/grafo_construction.s: src/grafo_construction.cpp.s
-.PHONY : src/grafo_construction.s
+src/graph_construction.s: src/graph_construction.cpp.s
+.PHONY : src/graph_construction.s
 
 # target to generate assembly for a file
-src/grafo_construction.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/grafo_construction.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/grafo_construction.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/grafo_construction.cpp.s
-.PHONY : src/grafo_construction.cpp.s
+src/graph_construction.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/graph_construction.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/graph_construction.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/graph_construction.cpp.s
+.PHONY : src/graph_construction.cpp.s
 
 src/netlist_parser.o: src/netlist_parser.cpp.o
 .PHONY : src/netlist_parser.o
@@ -292,7 +292,7 @@ src/netlist_parser.o: src/netlist_parser.cpp.o
 src/netlist_parser.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/netlist_parser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/netlist_parser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/netlist_parser.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o
 .PHONY : src/netlist_parser.cpp.o
 
@@ -303,7 +303,7 @@ src/netlist_parser.i: src/netlist_parser.cpp.i
 src/netlist_parser.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/netlist_parser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/src/netlist_parser.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/netlist_parser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/netlist_parser.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/netlist_parser.cpp.i
 .PHONY : src/netlist_parser.cpp.i
 
@@ -314,33 +314,33 @@ src/netlist_parser.s: src/netlist_parser.cpp.s
 src/netlist_parser.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/netlist_parser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_parser.dir/build.make CMakeFiles/test_parser.dir/src/netlist_parser.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/src/netlist_parser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/src/netlist_parser.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_solve.dir/build.make CMakeFiles/test_solve.dir/src/netlist_parser.cpp.s
 .PHONY : src/netlist_parser.cpp.s
 
-test/test_cicliDFS.o: test/test_cicliDFS.cpp.o
-.PHONY : test/test_cicliDFS.o
+test/test_cycles_DFS.o: test/test_cycles_DFS.cpp.o
+.PHONY : test/test_cycles_DFS.o
 
 # target to build an object file
-test/test_cicliDFS.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cicliDFS.dir/build.make CMakeFiles/test_cicliDFS.dir/test/test_cicliDFS.cpp.o
-.PHONY : test/test_cicliDFS.cpp.o
+test/test_cycles_DFS.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cycles_DFS.dir/build.make CMakeFiles/test_cycles_DFS.dir/test/test_cycles_DFS.cpp.o
+.PHONY : test/test_cycles_DFS.cpp.o
 
-test/test_cicliDFS.i: test/test_cicliDFS.cpp.i
-.PHONY : test/test_cicliDFS.i
+test/test_cycles_DFS.i: test/test_cycles_DFS.cpp.i
+.PHONY : test/test_cycles_DFS.i
 
 # target to preprocess a source file
-test/test_cicliDFS.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cicliDFS.dir/build.make CMakeFiles/test_cicliDFS.dir/test/test_cicliDFS.cpp.i
-.PHONY : test/test_cicliDFS.cpp.i
+test/test_cycles_DFS.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cycles_DFS.dir/build.make CMakeFiles/test_cycles_DFS.dir/test/test_cycles_DFS.cpp.i
+.PHONY : test/test_cycles_DFS.cpp.i
 
-test/test_cicliDFS.s: test/test_cicliDFS.cpp.s
-.PHONY : test/test_cicliDFS.s
+test/test_cycles_DFS.s: test/test_cycles_DFS.cpp.s
+.PHONY : test/test_cycles_DFS.s
 
 # target to generate assembly for a file
-test/test_cicliDFS.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cicliDFS.dir/build.make CMakeFiles/test_cicliDFS.dir/test/test_cicliDFS.cpp.s
-.PHONY : test/test_cicliDFS.cpp.s
+test/test_cycles_DFS.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_cycles_DFS.dir/build.make CMakeFiles/test_cycles_DFS.dir/test/test_cycles_DFS.cpp.s
+.PHONY : test/test_cycles_DFS.cpp.s
 
 test/test_de_pina.o: test/test_de_pina.cpp.o
 .PHONY : test/test_de_pina.o
@@ -366,29 +366,29 @@ test/test_de_pina.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_de_pina.dir/build.make CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.s
 .PHONY : test/test_de_pina.cpp.s
 
-test/test_grafo.o: test/test_grafo.cpp.o
-.PHONY : test/test_grafo.o
+test/test_graph.o: test/test_graph.cpp.o
+.PHONY : test/test_graph.o
 
 # target to build an object file
-test/test_grafo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/test/test_grafo.cpp.o
-.PHONY : test/test_grafo.cpp.o
+test/test_graph.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/test/test_graph.cpp.o
+.PHONY : test/test_graph.cpp.o
 
-test/test_grafo.i: test/test_grafo.cpp.i
-.PHONY : test/test_grafo.i
+test/test_graph.i: test/test_graph.cpp.i
+.PHONY : test/test_graph.i
 
 # target to preprocess a source file
-test/test_grafo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/test/test_grafo.cpp.i
-.PHONY : test/test_grafo.cpp.i
+test/test_graph.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/test/test_graph.cpp.i
+.PHONY : test/test_graph.cpp.i
 
-test/test_grafo.s: test/test_grafo.cpp.s
-.PHONY : test/test_grafo.s
+test/test_graph.s: test/test_graph.cpp.s
+.PHONY : test/test_graph.s
 
 # target to generate assembly for a file
-test/test_grafo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_grafo.dir/build.make CMakeFiles/test_grafo.dir/test/test_grafo.cpp.s
-.PHONY : test/test_grafo.cpp.s
+test/test_graph.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_graph.dir/build.make CMakeFiles/test_graph.dir/test/test_graph.cpp.s
+.PHONY : test/test_graph.cpp.s
 
 test/test_parser.o: test/test_parser.cpp.o
 .PHONY : test/test_parser.o
@@ -448,32 +448,32 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... test"
 	@echo "... main"
-	@echo "... test_cicliDFS"
+	@echo "... test_cycles_DFS"
 	@echo "... test_de_pina"
-	@echo "... test_grafo"
+	@echo "... test_graph"
 	@echo "... test_parser"
 	@echo "... test_solve"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... src/cd_gradient.o"
-	@echo "... src/cd_gradient.i"
-	@echo "... src/cd_gradient.s"
-	@echo "... src/grafo_construction.o"
-	@echo "... src/grafo_construction.i"
-	@echo "... src/grafo_construction.s"
+	@echo "... src/conjugate_gradient.o"
+	@echo "... src/conjugate_gradient.i"
+	@echo "... src/conjugate_gradient.s"
+	@echo "... src/graph_construction.o"
+	@echo "... src/graph_construction.i"
+	@echo "... src/graph_construction.s"
 	@echo "... src/netlist_parser.o"
 	@echo "... src/netlist_parser.i"
 	@echo "... src/netlist_parser.s"
-	@echo "... test/test_cicliDFS.o"
-	@echo "... test/test_cicliDFS.i"
-	@echo "... test/test_cicliDFS.s"
+	@echo "... test/test_cycles_DFS.o"
+	@echo "... test/test_cycles_DFS.i"
+	@echo "... test/test_cycles_DFS.s"
 	@echo "... test/test_de_pina.o"
 	@echo "... test/test_de_pina.i"
 	@echo "... test/test_de_pina.s"
-	@echo "... test/test_grafo.o"
-	@echo "... test/test_grafo.i"
-	@echo "... test/test_grafo.s"
+	@echo "... test/test_graph.o"
+	@echo "... test/test_graph.i"
+	@echo "... test/test_graph.s"
 	@echo "... test/test_parser.o"
 	@echo "... test/test_parser.i"
 	@echo "... test/test_parser.s"

@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wextra -Wshadow -Werror=vla -Wl,--dependency-file=CMakeFiles/test_grafo.dir/link.d CMakeFiles/test_grafo.dir/test/test_grafo.cpp.o CMakeFiles/test_grafo.dir/src/netlist_parser.cpp.o CMakeFiles/test_grafo.dir/src/grafo_construction.cpp.o -o test_grafo

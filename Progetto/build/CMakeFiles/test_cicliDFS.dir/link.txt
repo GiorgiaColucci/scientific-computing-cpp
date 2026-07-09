@@ -1,1 +1,0 @@
-/usr/bin/c++  -Wall -Wextra -Wshadow -Werror=vla -Wl,--dependency-file=CMakeFiles/test_cicliDFS.dir/link.d CMakeFiles/test_cicliDFS.dir/test/test_cicliDFS.cpp.o -o test_cicliDFS

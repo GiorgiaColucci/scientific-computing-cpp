@@ -1,10 +1,10 @@
-Start testing: Jun 15 20:13 UTC
+Start testing: Jul 09 00:08 UTC
 ----------------------------------------------------------
-1/3 Testing: parser
-1/3 Test: parser
-Command: "/home/pcsdocker/Data/pcs2026/build/test_parser"
-Directory: /home/pcsdocker/Data/pcs2026/build
-"parser" start time: Jun 15 20:13 UTC
+1/5 Testing: parser
+1/5 Test: parser
+Command: "/home/pcsdocker/Data/PCS_2026/Progetto/build/test_parser"
+Directory: /home/pcsdocker/Data/PCS_2026/Progetto/build
+"parser" start time: Jul 09 00:08 UTC
 Output:
 ----------------------------------------------------------
 [OK]: test_parse_traccia
@@ -80,15 +80,15 @@ Tutti i test del parser sono passati.
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"parser" end time: Jun 15 20:13 UTC
+"parser" end time: Jul 09 00:08 UTC
 "parser" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/3 Testing: grafo
-2/3 Test: grafo
-Command: "/home/pcsdocker/Data/pcs2026/build/test_grafo"
-Directory: /home/pcsdocker/Data/pcs2026
-"grafo" start time: Jun 15 20:13 UTC
+2/5 Testing: graph
+2/5 Test: graph
+Command: "/home/pcsdocker/Data/PCS_2026/Progetto/build/test_graph"
+Directory: /home/pcsdocker/Data/PCS_2026/Progetto
+"graph" start time: Jul 09 00:08 UTC
 Output:
 ----------------------------------------------------------
 [OK] test_grafo_dim
@@ -102,30 +102,66 @@ Tutti i test del grafo sono passati.
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"grafo" end time: Jun 15 20:13 UTC
-"grafo" time elapsed: 00:00:00
+"graph" end time: Jul 09 00:08 UTC
+"graph" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/3 Testing: depina
-3/3 Test: depina
-Command: "/home/pcsdocker/Data/pcs2026/build/test_de_pina"
-Directory: /home/pcsdocker/Data/pcs2026/build
-"depina" start time: Jun 15 20:13 UTC
+3/5 Testing: depina
+3/5 Test: depina
+Command: "/home/pcsdocker/Data/PCS_2026/Progetto/build/test_de_pina"
+Directory: /home/pcsdocker/Data/PCS_2026/Progetto/build
+"depina" start time: Jul 09 00:08 UTC
 Output:
 ----------------------------------------------------------
-graph G {
-    0 -- 1;
-    0 -- 2;
-    0 -- 3;
-    1 -- 2;
-    2 -- 3;
-}
+Test su albero riuscito
+Test su grafo con cicli riuscito
+Test su grafo con un ciclo solo riuscito
 <end of output>
 Test time =   0.00 sec
 ----------------------------------------------------------
 Test Passed.
-"depina" end time: Jun 15 20:13 UTC
+"depina" end time: Jul 09 00:08 UTC
 "depina" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Jun 15 20:13 UTC
+4/5 Testing: cycles_dfs
+4/5 Test: cycles_dfs
+Command: "/home/pcsdocker/Data/PCS_2026/Progetto/build/test_cycles_DFS"
+Directory: /home/pcsdocker/Data/PCS_2026/Progetto/build
+"cycles_dfs" start time: Jul 09 00:08 UTC
+Output:
+----------------------------------------------------------
+[OK] test_cicli_dfs_albero
+[OK] test_cicli_dfs_numero
+[OK] test_cicli_dfs_validita
+[OK] test_cicli_dfs_indipendenza
+
+Tutti i test sui cicli DFS sono passati.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cycles_dfs" end time: Jul 09 00:08 UTC
+"cycles_dfs" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/5 Testing: solve
+5/5 Test: solve
+Command: "/home/pcsdocker/Data/PCS_2026/Progetto/build/test_solve"
+Directory: /home/pcsdocker/Data/PCS_2026/Progetto
+"solve" start time: Jul 09 00:08 UTC
+Output:
+----------------------------------------------------------
+[OK] test_solve_dfs
+[OK] test_solve_depina
+
+Tutti i test del solver sono passati.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"solve" end time: Jul 09 00:08 UTC
+"solve" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Jul 09 00:08 UTC

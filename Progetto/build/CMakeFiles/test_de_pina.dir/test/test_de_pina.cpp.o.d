@@ -1,5 +1,5 @@
 CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o: \
- /home/pcsdocker/Data/pcs2026/test/test_de_pina.cpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/test/test_de_pina.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/iostream \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h \
@@ -168,9 +168,9 @@ CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o: \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \
  /usr/include/c++/14/bits/vector.tcc \
- /home/pcsdocker/Data/pcs2026/include/graph.hpp \
- /home/pcsdocker/Data/pcs2026/include/edge.hpp /usr/include/c++/14/map \
- /usr/include/c++/14/bits/stl_tree.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/edge.hpp \
+ /usr/include/c++/14/map /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/ext/aligned_buffer.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/stl_map.h \
@@ -187,25 +187,25 @@ CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o: \
  /usr/include/c++/14/bits/ranges_algobase.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h \
- /home/pcsdocker/Data/pcs2026/include/stampa_grafi.hpp \
- /home/pcsdocker/Data/pcs2026/include/stampa_archi.hpp \
- /home/pcsdocker/Data/pcs2026/include/costruzione_grafo.hpp \
- /home/pcsdocker/Data/pcs2026/include/netlist_struct.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/print_graphs.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/print_edges.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_construction.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/netlist_struct.hpp \
  /usr/include/c++/14/fstream /usr/include/c++/14/bits/codecvt.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h \
  /usr/include/c++/14/bits/fstream.tcc \
- /home/pcsdocker/Data/pcs2026/include/de_pina.hpp \
- /home/pcsdocker/Data/pcs2026/include/lifo.hpp /usr/include/c++/14/list \
- /usr/include/c++/14/bits/stl_list.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/de_pina.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/lifo.hpp \
+ /usr/include/c++/14/list /usr/include/c++/14/bits/stl_list.h \
  /usr/include/c++/14/bits/allocated_ptr.h \
  /usr/include/c++/14/bits/list.tcc \
- /home/pcsdocker/Data/pcs2026/include/graph_visit.hpp \
- /home/pcsdocker/Data/pcs2026/include/dijkstra.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_visit.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dijkstra.hpp \
  /usr/include/c++/14/queue /usr/include/c++/14/deque \
  /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
  /usr/include/c++/14/bits/stl_queue.h /usr/include/c++/14/optional \
  /usr/include/c++/14/bits/enable_special_members.h \
- /home/pcsdocker/Data/pcs2026/include/dot_prod.hpp \
- /home/pcsdocker/Data/pcs2026/include/binary_diff.hpp \
- /home/pcsdocker/Data/pcs2026/test/test_de_pina_helper.hpp
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dot_prod.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/binary_diff.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/test/test_de_pina_helper.hpp

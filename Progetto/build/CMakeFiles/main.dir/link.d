@@ -4,8 +4,8 @@ main: \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/main.dir/main.cpp.o \
   CMakeFiles/main.dir/src/netlist_parser.cpp.o \
-  CMakeFiles/main.dir/src/cd_gradient.cpp.o \
-  CMakeFiles/main.dir/src/grafo_construction.cpp.o \
+  CMakeFiles/main.dir/src/conjugate_gradient.cpp.o \
+  CMakeFiles/main.dir/src/graph_construction.cpp.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libm.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libm.so \
@@ -44,9 +44,9 @@ CMakeFiles/main.dir/main.cpp.o:
 
 CMakeFiles/main.dir/src/netlist_parser.cpp.o:
 
-CMakeFiles/main.dir/src/cd_gradient.cpp.o:
+CMakeFiles/main.dir/src/conjugate_gradient.cpp.o:
 
-CMakeFiles/main.dir/src/grafo_construction.cpp.o:
+CMakeFiles/main.dir/src/graph_construction.cpp.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so:
 

@@ -8,10 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/pcsdocker/Data/pcs2026/src/cd_gradient.cpp" "CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/src/grafo_construction.cpp" "CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp" "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/test/test_solve.cpp" "CMakeFiles/test_solve.dir/test/test_solve.cpp.o" "gcc" "CMakeFiles/test_solve.dir/test/test_solve.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/conjugate_gradient.cpp" "CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/graph_construction.cpp" "CMakeFiles/test_solve.dir/src/graph_construction.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/graph_construction.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp" "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/test/test_solve.cpp" "CMakeFiles/test_solve.dir/test/test_solve.cpp.o" "gcc" "CMakeFiles/test_solve.dir/test/test_solve.cpp.o.d"
   "" "test_solve" "gcc" "CMakeFiles/test_solve.dir/link.d"
   )
 

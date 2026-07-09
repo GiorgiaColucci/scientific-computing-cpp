@@ -4,8 +4,8 @@ test_solve: \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/test_solve.dir/test/test_solve.cpp.o \
   CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o \
-  CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o \
-  CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o \
+  CMakeFiles/test_solve.dir/src/graph_construction.cpp.o \
+  CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libm.so \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/libm.so \
@@ -44,9 +44,9 @@ CMakeFiles/test_solve.dir/test/test_solve.cpp.o:
 
 CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o:
 
-CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o:
+CMakeFiles/test_solve.dir/src/graph_construction.cpp.o:
 
-CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o:
+CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/libstdc++.so:
 

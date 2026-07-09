@@ -7,11 +7,11 @@
 #include "lifo.hpp"
 #include "graph_visit.hpp"
 #include "netlist_struct.hpp"
-#include "costruzione_grafo.hpp"
-#include "cicli_DFS.hpp"
+#include "graph_construction.hpp"
+#include "cycles_DFS.hpp"
 #include "de_pina.hpp"
 #include "solve.hpp"
-#include "stampa_grafi.hpp"
+#include "print_graphs.hpp"
 
 // Stampa messaggio d'uso
 void stampa_uso (const char* nome_prog)

@@ -1,7 +1,7 @@
 CMakeFiles/test_solve.dir/test/test_solve.cpp.o: \
- /home/pcsdocker/Data/pcs2026/test/test_solve.cpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/test/test_solve.cpp \
  /usr/include/stdc-predef.h \
- /home/pcsdocker/Data/pcs2026/include/netlist_struct.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/netlist_struct.hpp \
  /usr/include/c++/14/string /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/os_defines.h \
@@ -127,16 +127,16 @@ CMakeFiles/test_solve.dir/test/test_solve.cpp.o: \
  /usr/include/c++/14/bits/stl_vector.h \
  /usr/include/c++/14/bits/stl_bvector.h \
  /usr/include/c++/14/bits/vector.tcc \
- /home/pcsdocker/Data/pcs2026/include/costruzione_grafo.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_construction.hpp \
  /usr/include/c++/14/map /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/ext/aligned_buffer.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/stl_map.h \
  /usr/include/c++/14/bits/stl_multimap.h \
  /usr/include/c++/14/bits/erase_if.h \
- /home/pcsdocker/Data/pcs2026/include/edge.hpp \
- /home/pcsdocker/Data/pcs2026/include/graph.hpp /usr/include/c++/14/set \
- /usr/include/c++/14/bits/stl_set.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/edge.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph.hpp \
+ /usr/include/c++/14/set /usr/include/c++/14/bits/stl_set.h \
  /usr/include/c++/14/bits/stl_multiset.h /usr/include/c++/14/algorithm \
  /usr/include/c++/14/bits/stl_algo.h \
  /usr/include/c++/14/bits/algorithmfwd.h \
@@ -147,7 +147,7 @@ CMakeFiles/test_solve.dir/test/test_solve.cpp.o: \
  /usr/include/c++/14/bits/ranges_algobase.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h \
- /home/pcsdocker/Data/pcs2026/include/cicli_DFS.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/cycles_DFS.hpp \
  /usr/include/c++/14/iostream /usr/include/c++/14/ostream \
  /usr/include/c++/14/ios /usr/include/c++/14/exception \
  /usr/include/c++/14/bits/exception_ptr.h \
@@ -192,21 +192,21 @@ CMakeFiles/test_solve.dir/test/test_solve.cpp.o: \
  /usr/include/c++/14/bits/basic_ios.tcc \
  /usr/include/c++/14/bits/ostream.tcc /usr/include/c++/14/istream \
  /usr/include/c++/14/bits/istream.tcc \
- /home/pcsdocker/Data/pcs2026/include/recursive_DFS.hpp \
- /home/pcsdocker/Data/pcs2026/include/de_pina.hpp \
- /home/pcsdocker/Data/pcs2026/include/lifo.hpp /usr/include/c++/14/list \
- /usr/include/c++/14/bits/stl_list.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/recursive_DFS.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/de_pina.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/lifo.hpp \
+ /usr/include/c++/14/list /usr/include/c++/14/bits/stl_list.h \
  /usr/include/c++/14/bits/allocated_ptr.h \
  /usr/include/c++/14/bits/list.tcc \
- /home/pcsdocker/Data/pcs2026/include/graph_visit.hpp \
- /home/pcsdocker/Data/pcs2026/include/dijkstra.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_visit.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dijkstra.hpp \
  /usr/include/c++/14/queue /usr/include/c++/14/deque \
  /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
  /usr/include/c++/14/bits/stl_queue.h /usr/include/c++/14/optional \
  /usr/include/c++/14/bits/enable_special_members.h \
- /home/pcsdocker/Data/pcs2026/include/dot_prod.hpp \
- /home/pcsdocker/Data/pcs2026/include/binary_diff.hpp \
- /home/pcsdocker/Data/pcs2026/include/solve.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dot_prod.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/binary_diff.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/solve.hpp \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -458,4 +458,4 @@ CMakeFiles/test_solve.dir/test/test_solve.cpp.o: \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/pcsdocker/Data/pcs2026/include/gradiente_cd.hpp
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/conjugate_gradient.hpp

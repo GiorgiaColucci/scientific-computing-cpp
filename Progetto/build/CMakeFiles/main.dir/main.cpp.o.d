@@ -1,4 +1,5 @@
-CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/pcs2026/main.cpp \
+CMakeFiles/main.dir/main.cpp.o: \
+ /home/pcsdocker/Data/PCS_2026/Progetto/main.cpp \
  /usr/include/stdc-predef.h /usr/include/c++/14/string \
  /usr/include/c++/14/bits/requires_hosted.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h \
@@ -168,20 +169,20 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/pcs2026/main.cpp \
  /usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h \
  /usr/include/c++/14/bits/fstream.tcc \
- /home/pcsdocker/Data/pcs2026/include/lifo.hpp /usr/include/c++/14/list \
- /usr/include/c++/14/bits/stl_list.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/lifo.hpp \
+ /usr/include/c++/14/list /usr/include/c++/14/bits/stl_list.h \
  /usr/include/c++/14/bits/allocated_ptr.h \
  /usr/include/c++/14/ext/aligned_buffer.h \
  /usr/include/c++/14/bits/list.tcc \
- /home/pcsdocker/Data/pcs2026/include/graph_visit.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_visit.hpp \
  /usr/include/c++/14/set /usr/include/c++/14/bits/stl_tree.h \
  /usr/include/c++/14/bits/node_handle.h \
  /usr/include/c++/14/bits/stl_set.h \
  /usr/include/c++/14/bits/stl_multiset.h \
  /usr/include/c++/14/bits/erase_if.h \
- /home/pcsdocker/Data/pcs2026/include/graph.hpp \
- /home/pcsdocker/Data/pcs2026/include/edge.hpp /usr/include/c++/14/map \
- /usr/include/c++/14/bits/stl_map.h \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/edge.hpp \
+ /usr/include/c++/14/map /usr/include/c++/14/bits/stl_map.h \
  /usr/include/c++/14/bits/stl_multimap.h /usr/include/c++/14/vector \
  /usr/include/c++/14/bits/stl_uninitialized.h \
  /usr/include/c++/14/bits/stl_vector.h \
@@ -196,19 +197,19 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/pcs2026/main.cpp \
  /usr/include/c++/14/bits/ranges_algobase.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h \
  /usr/include/c++/14/pstl/execution_defs.h \
- /home/pcsdocker/Data/pcs2026/include/netlist_struct.hpp \
- /home/pcsdocker/Data/pcs2026/include/costruzione_grafo.hpp \
- /home/pcsdocker/Data/pcs2026/include/cicli_DFS.hpp \
- /home/pcsdocker/Data/pcs2026/include/recursive_DFS.hpp \
- /home/pcsdocker/Data/pcs2026/include/de_pina.hpp \
- /home/pcsdocker/Data/pcs2026/include/dijkstra.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/netlist_struct.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/graph_construction.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/cycles_DFS.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/recursive_DFS.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/de_pina.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dijkstra.hpp \
  /usr/include/c++/14/queue /usr/include/c++/14/deque \
  /usr/include/c++/14/bits/stl_deque.h /usr/include/c++/14/bits/deque.tcc \
  /usr/include/c++/14/bits/stl_queue.h /usr/include/c++/14/optional \
  /usr/include/c++/14/bits/enable_special_members.h \
- /home/pcsdocker/Data/pcs2026/include/dot_prod.hpp \
- /home/pcsdocker/Data/pcs2026/include/binary_diff.hpp \
- /home/pcsdocker/Data/pcs2026/include/solve.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/dot_prod.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/binary_diff.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/solve.hpp \
  /usr/include/eigen3/Eigen/Dense /usr/include/eigen3/Eigen/Core \
  /usr/include/eigen3/Eigen/src/Core/util/DisableStupidWarnings.h \
  /usr/include/eigen3/Eigen/src/Core/util/Macros.h \
@@ -460,6 +461,6 @@ CMakeFiles/main.dir/main.cpp.o: /home/pcsdocker/Data/pcs2026/main.cpp \
  /usr/include/eigen3/Eigen/src/Eigenvalues/GeneralizedEigenSolver.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/RealQZ.h \
  /usr/include/eigen3/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
- /home/pcsdocker/Data/pcs2026/include/gradiente_cd.hpp \
- /home/pcsdocker/Data/pcs2026/include/stampa_grafi.hpp \
- /home/pcsdocker/Data/pcs2026/include/stampa_archi.hpp
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/conjugate_gradient.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/print_graphs.hpp \
+ /home/pcsdocker/Data/PCS_2026/Progetto/include/print_edges.hpp

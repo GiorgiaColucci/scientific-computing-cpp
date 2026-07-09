@@ -2,7 +2,7 @@
 #include <vector>
 #include "graph.hpp"
 #include "edge.hpp"
-#include "stampa_grafi.hpp"
+#include "print_graphs.hpp"
 #include "de_pina.hpp"
 #include "test_de_pina_helper.hpp"
 /*Test unitari per l'algoritmo di De Pina

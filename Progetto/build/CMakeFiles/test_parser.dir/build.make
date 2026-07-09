@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/pcsdocker/Data/pcs2026
+CMAKE_SOURCE_DIR = /home/pcsdocker/Data/PCS_2026/Progetto
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/pcsdocker/Data/pcs2026/build
+CMAKE_BINARY_DIR = /home/pcsdocker/Data/PCS_2026/Progetto/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/test_parser.dir/depend.make
@@ -73,32 +73,32 @@ CMakeFiles/test_parser.dir/codegen:
 .PHONY : CMakeFiles/test_parser.dir/codegen
 
 CMakeFiles/test_parser.dir/test/test_parser.cpp.o: CMakeFiles/test_parser.dir/flags.make
-CMakeFiles/test_parser.dir/test/test_parser.cpp.o: /home/pcsdocker/Data/pcs2026/test/test_parser.cpp
+CMakeFiles/test_parser.dir/test/test_parser.cpp.o: /home/pcsdocker/Data/PCS_2026/Progetto/test/test_parser.cpp
 CMakeFiles/test_parser.dir/test/test_parser.cpp.o: CMakeFiles/test_parser.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pcsdocker/Data/pcs2026/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_parser.dir/test/test_parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_parser.dir/test/test_parser.cpp.o -MF CMakeFiles/test_parser.dir/test/test_parser.cpp.o.d -o CMakeFiles/test_parser.dir/test/test_parser.cpp.o -c /home/pcsdocker/Data/pcs2026/test/test_parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/test_parser.dir/test/test_parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_parser.dir/test/test_parser.cpp.o -MF CMakeFiles/test_parser.dir/test/test_parser.cpp.o.d -o CMakeFiles/test_parser.dir/test/test_parser.cpp.o -c /home/pcsdocker/Data/PCS_2026/Progetto/test/test_parser.cpp
 
 CMakeFiles/test_parser.dir/test/test_parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_parser.dir/test/test_parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pcsdocker/Data/pcs2026/test/test_parser.cpp > CMakeFiles/test_parser.dir/test/test_parser.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pcsdocker/Data/PCS_2026/Progetto/test/test_parser.cpp > CMakeFiles/test_parser.dir/test/test_parser.cpp.i
 
 CMakeFiles/test_parser.dir/test/test_parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_parser.dir/test/test_parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pcsdocker/Data/pcs2026/test/test_parser.cpp -o CMakeFiles/test_parser.dir/test/test_parser.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pcsdocker/Data/PCS_2026/Progetto/test/test_parser.cpp -o CMakeFiles/test_parser.dir/test/test_parser.cpp.s
 
 CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o: CMakeFiles/test_parser.dir/flags.make
-CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o: /home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp
+CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o: /home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp
 CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o: CMakeFiles/test_parser.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pcsdocker/Data/pcs2026/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o -MF CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o.d -o CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o -c /home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o -MF CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o.d -o CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o -c /home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp
 
 CMakeFiles/test_parser.dir/src/netlist_parser.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/test_parser.dir/src/netlist_parser.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp > CMakeFiles/test_parser.dir/src/netlist_parser.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp > CMakeFiles/test_parser.dir/src/netlist_parser.cpp.i
 
 CMakeFiles/test_parser.dir/src/netlist_parser.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/test_parser.dir/src/netlist_parser.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp -o CMakeFiles/test_parser.dir/src/netlist_parser.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp -o CMakeFiles/test_parser.dir/src/netlist_parser.cpp.s
 
 # Object files for target test_parser
 test_parser_OBJECTS = \
@@ -113,7 +113,7 @@ test_parser: CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o
 test_parser: CMakeFiles/test_parser.dir/build.make
 test_parser: CMakeFiles/test_parser.dir/compiler_depend.ts
 test_parser: CMakeFiles/test_parser.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/pcsdocker/Data/pcs2026/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable test_parser"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable test_parser"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_parser.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -125,6 +125,6 @@ CMakeFiles/test_parser.dir/clean:
 .PHONY : CMakeFiles/test_parser.dir/clean
 
 CMakeFiles/test_parser.dir/depend:
-	cd /home/pcsdocker/Data/pcs2026/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pcsdocker/Data/pcs2026 /home/pcsdocker/Data/pcs2026 /home/pcsdocker/Data/pcs2026/build /home/pcsdocker/Data/pcs2026/build /home/pcsdocker/Data/pcs2026/build/CMakeFiles/test_parser.dir/DependInfo.cmake "--color=$(COLOR)"
+	cd /home/pcsdocker/Data/PCS_2026/Progetto/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/pcsdocker/Data/PCS_2026/Progetto /home/pcsdocker/Data/PCS_2026/Progetto /home/pcsdocker/Data/PCS_2026/Progetto/build /home/pcsdocker/Data/PCS_2026/Progetto/build /home/pcsdocker/Data/PCS_2026/Progetto/build/CMakeFiles/test_parser.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : CMakeFiles/test_parser.dir/depend
 

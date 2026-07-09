@@ -10,8 +10,8 @@
 #include "graph.hpp"
 #include "graph_visit.hpp"
 #include "netlist_struct.hpp"
-#include "gradiente_cd.hpp"
-#include "costruzione_grafo.hpp"
+#include "conjugate_gradient.hpp"
+#include "graph_construction.hpp"
 
 struct RisultatoCircuit {
     std::vector<std::string> nomi_resistori;

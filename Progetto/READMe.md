@@ -101,7 +101,7 @@ Restituisce **errore** (e termina) per:
 
 ## Esempio
 
-Con una netlist `prova.txt`:
+Con una netlist `sample.txt`:
 ```
 V1 30 1 4
 V2 40 3 5
@@ -112,9 +112,9 @@ R4 10 3 2
 R5 4  2 5
 ```
 
-`./main prova.txt` produce un output del tipo:
+`./main sample.txt` produce un output del tipo:
 ```
-Netlist:    prova.txt
+Netlist:    sample.txt
 Nodi:       5
 Componenti: 7
 Maglie:     3
@@ -135,7 +135,7 @@ pcs2026/
 |-- CMakeLists.txt          
 |-- README.md                   
 |-- main.cpp                        # punto di ingresso del programma
-|-- prova.txt						            # usato nei test 
+|-- sample.txt						            # usato nei test 
 |
 |-- include/                        # file header (intestazioni)
 |   |-- netlist_struct.hpp          # struct Componente, Output

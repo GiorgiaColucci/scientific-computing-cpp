@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/pcsdocker/Data/pcs2026/src/netlist_parser.cpp" "CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o.d"
-  "/home/pcsdocker/Data/pcs2026/test/test_parser.cpp" "CMakeFiles/test_parser.dir/test/test_parser.cpp.o" "gcc" "CMakeFiles/test_parser.dir/test/test_parser.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/src/netlist_parser.cpp" "CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o" "gcc" "CMakeFiles/test_parser.dir/src/netlist_parser.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/test/test_parser.cpp" "CMakeFiles/test_parser.dir/test/test_parser.cpp.o" "gcc" "CMakeFiles/test_parser.dir/test/test_parser.cpp.o.d"
   "" "test_parser" "gcc" "CMakeFiles/test_parser.dir/link.d"
   )
 

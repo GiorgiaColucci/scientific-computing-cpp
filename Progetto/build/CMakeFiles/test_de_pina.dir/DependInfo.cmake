@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/pcsdocker/Data/pcs2026/test/test_de_pina.cpp" "CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o" "gcc" "CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o.d"
+  "/home/pcsdocker/Data/PCS_2026/Progetto/test/test_de_pina.cpp" "CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o" "gcc" "CMakeFiles/test_de_pina.dir/test/test_de_pina.cpp.o.d"
   "" "test_de_pina" "gcc" "CMakeFiles/test_de_pina.dir/link.d"
   )
 

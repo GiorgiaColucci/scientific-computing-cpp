@@ -1,9 +1,9 @@
 file(REMOVE_RECURSE
   "CMakeFiles/test_solve.dir/link.d"
-  "CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o"
-  "CMakeFiles/test_solve.dir/src/cd_gradient.cpp.o.d"
-  "CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o"
-  "CMakeFiles/test_solve.dir/src/grafo_construction.cpp.o.d"
+  "CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o"
+  "CMakeFiles/test_solve.dir/src/conjugate_gradient.cpp.o.d"
+  "CMakeFiles/test_solve.dir/src/graph_construction.cpp.o"
+  "CMakeFiles/test_solve.dir/src/graph_construction.cpp.o.d"
   "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o"
   "CMakeFiles/test_solve.dir/src/netlist_parser.cpp.o.d"
   "CMakeFiles/test_solve.dir/test/test_solve.cpp.o"
