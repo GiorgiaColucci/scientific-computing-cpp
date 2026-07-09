@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <cctype> //per toupper
+#include <cctype> //for toupper
 
 #include "lifo.hpp"
 #include "graph_visit.hpp"
@@ -13,7 +13,7 @@
 #include "solve.hpp"
 #include "print_graphs.hpp"
 
-// Stampa messaggio d'uso
+// Print usage message
 void stampa_uso (const char* nome_prog)
 {
     std::cout << "Uso: "<< nome_prog << " <path/della/netlist> \n"
@@ -22,14 +22,14 @@ void stampa_uso (const char* nome_prog)
 
 int main(int argc, char* argv[])
 {
-    // deve esserci esattamente un path 
+    // there must be exactly one path
     if (argc<2) {
         std::cerr << "ERRORE: numero di argomenti errato\n";
         stampa_uso(argv[0]);
         return EXIT_FAILURE;
     }
 
-	bool usa_dfs = false; // De Pina di default
+	bool usa_dfs = false; // De Pina by default
 	std::string scelta;
     
 	while(true) {
@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
         return EXIT_FAILURE;
     }
 
-    // Costruzione del grafo e delle mappe ausiliarie
+    // BUuld the graph and the auxiliary maps 
     std::map<edge<int>, edge_data> edge_data_map;
 
     graph<int> G = costruisci_grafo(result, edge_data_map);
@@ -72,13 +72,13 @@ int main(int argc, char* argv[])
     graph<int> T_graph = graph_visit(G, nodo_radice, stack);
     graph<int> C_graph = G - T_graph;
 
-    //controllo che il grafo sia connesso
+    // check that the graph is connected
     if (T_graph.all_nodes().size() != G.all_nodes().size()) {
 	std::cerr << "ERRORE: il grafo del circuito non è connesso\n";
     	return EXIT_FAILURE;
     }
 
-    // Riepilogo circuito
+    // Circuito summary
     const int n_nodi        = static_cast<int>(G.all_nodes().size());
     const int n_componenti  = static_cast<int>(G.all_edges().size());
     const int n_maglie      = n_componenti - n_nodi + 1;
@@ -136,8 +136,10 @@ int main(int argc, char* argv[])
 		}
 	}
 
-    // Per ottenere le immagini dei grafi con GraphViz devo tradurre i grafi in linguaggio DOT (Abstract grammar for defining Graphviz nodes, edges, graphs, subgraphs, and clusters)
-    if (stampa) {          // o chiedi all'utente prima di return
+    // To get the graph images with GraphViz, the graphs must be translated into 
+    // the DOT language (abstract grammar for defining Graphviz nodes, edges, graphs,
+    //  subgraphs, and clusters)
+    if (stampa) {          // or ask the user before returning
         const std::string grafo_dot = "grafo_principale.dot";
         const std::string grafo_png = "grafo.png";
         const std::string coalb_dot = "coalbero.dot";

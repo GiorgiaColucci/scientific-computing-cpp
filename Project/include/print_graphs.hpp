@@ -17,7 +17,7 @@ void print_graphviz(const graph<T>& G, const std::map<edge<T>, edge_data>& edge_
     
     for (const edge<T>& e : E) { 
         const auto& data = edge_map.at(e);
-        // Niente punto e virgola prima della parentesi quadra
+        // No semicolon (;) before the square braket
         std::cout << "    " << e.from() << " -- " << e.to() 
                   << " [label=\"" << data.nome << ": "<< data.valori << "\"];\n";
     }

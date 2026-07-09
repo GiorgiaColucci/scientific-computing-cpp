@@ -1,12 +1,12 @@
 #include "netlist_struct.hpp"
 
-#include <cctype>   //per std::isspace
+#include <cctype>   // for std::isspace
 #include <sstream>
 #include <fstream>
 #include <iostream>
 #include <cmath>
 #include <algorithm>
-#include <typeinfo> //per i tipi
+#include <typeinfo> // for the type info 
 
 // solo_spazivuoti --> restituisce true se la stringa s contiene solo spazi/tab/\n
 static bool solo_spazivuoti(const std::string& s) 

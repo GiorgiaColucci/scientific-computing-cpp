@@ -1,4 +1,4 @@
-//STACK
+// STACK
 #pragma once
 #include <list>
 template <typename T>

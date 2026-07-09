@@ -20,8 +20,8 @@ struct RisultatoCircuit {
 };
 
 /*
-Risolutore del circuito con il metodo delle correnti di maglia. Usa i cicli forniti da De Pina o da DFS, 
-che restituiscono per ogni ciclo la sequenza ordinata di nodi.
+Circuit solver using the mesh current method. Uses the cycles provided by De Pina or DFS,
+which return, for each cycle, the ordered sequence of nodes.
 */
 template<typename T>
 RisultatoCircuit circuit(
@@ -29,20 +29,20 @@ RisultatoCircuit circuit(
     const std::map<edge<int>, edge_data>&	  edge_data_map,
     const std::vector<std::vector<T>>&        cicli)
 {   
-    /* Prendo i cicli minimi con De Pina o DFS; 
-     cicli[j] = sequenza di nodi del ciclo j
-     Archi del ciclo: (cicli[j][s], cicli[j][s+1]%L) per s = 0 ... L-1 */
+    /* Take the minimum cycles from De Pina or DFS;
+     cicli[j] = sequence of nodes of cycle j
+     Cycle edges: (cicli[j][s], cicli[j][s+1]%L) for s = 0 ... L-1 */
 
     const std::vector<edge<T>>& E = G.all_edges();
-    const int m = static_cast<int>(E.size());             //numero di archi (componenti)
-    const int k = static_cast<int>(cicli.size());         //numero di maglie indipendenti;
+    const int m = static_cast<int>(E.size());             // number of edges (components)
+    const int k = static_cast<int>(cicli.size());         // number of independent meshes;
 
     if (k == 0) {
         std::cout << "Il circuito non presenta maglie chiuse da analizzare.\n";
         return {};
     }
 
-    // Controllo di nodi isolati oppure altre componenti connesse, attraverso DFS: il grafo deve essere connesso
+    // Check for isolated nodes or other connected components via DFS: the graph must be connected
     lifo<T> stack_conn;   
     T radice_conn = G.edge_at(0).from();
     graph<T> T_conn = graph_visit(G, radice_conn, stack_conn);
@@ -51,13 +51,13 @@ RisultatoCircuit circuit(
         return {}; 
     }
 
-    /* Costruzione della matrice di incidenza B (dimensione m x k); 
-    B[i][j] = +1    se il ciclo j percorre l'arco i nel verso canonico from -> to
-            = 0     se l'arco non appartiene al ciclo j
-            = -1    se il ciclo j percorre l'arco i nel verso opposto to -> from
+    /* Build the incidence matrix B (size m x k);
+    B[i][j] = +1    if cycle j traverses edge i in the canonical direction from -> to
+            = 0     if the edge does not belong to cycle j
+            = -1    if cycle j traverses edge i in the opposite direction to -> from
 
-    Le righe relative ai generatori contribuiscono zero in B^T * R * B perchè R è 0 su 
-    quelle righe, ma le incluso lo stesso per semplicità
+    The rows for the voltage sources contribute zero to B^T * R * B because R is 0 on
+    those rows, but they are included anyway for simplicity
     */
     Eigen::MatrixXd B = Eigen::MatrixXd::Zero(m, k);
 
@@ -67,38 +67,38 @@ RisultatoCircuit circuit(
 
         for (int s = 0; s < L; s++) {
             T u = cycle[s];
-            T v = cycle[(s+1)%L];           //arco di chiusura: ultimo --> primo
+            T v = cycle[(s+1)%L];           // closing edge : last --> first
 
             int id = G.edge_number(edge<T>(u,v));
             if (id == -1) continue;
 
-            // Verso canonico: from() < to(); se u < v sto percorrendo nel verso canonico (+1), altrimenti (-1)
+            // Canonical direction: from() < to(); if u < v we traverse in the canonical direction (+1), otherwise (-1)
             B(id, j) = (u < v) ? +1.0 : -1.0;
         }
     }
 
-    /* Costruzione della matrice delle resistenze (dimensione m x m, diagonale)
-    R[i][i] = valore della resistenza se l'arco è un resistore, 0 altrimenti
+    /* Build the resistance matrix (size m x m, diagonal)
+    R[i][i] = the resistance value if the edge is a resistor, 0 otherwise
     */
     Eigen::MatrixXd R = Eigen::MatrixXd::Zero(m, m);
     for (int i = 0; i < m; i++) {
         if (edge_data_map.at(E[i]).tipologia == TipoComponente::Resistore) {
             R(i, i) = edge_data_map.at(E[i]).valori;
-        }   //considero i generatori come a resistenza nulla
+        }   // voltage sources are treated as having zero resistance
     }
 
-    /* Costruzione del vettore dei termini noti (dimensione k)
-    Per ogni generatore nel ciclo j: 
-        dir = +1 se percorso nel verso canonico (nodo minore --> nodo maggiore), -1 altrimenti;
-        verso_positivo[e] = true  --> canonico va da + a - --> contributo -V (dir * (-1) * V) (+ è dalla parte del nodo minore)
-        verso_positivo[e] = false --> canonico va da - a + --> contributo +V (dir * (+1) * V) (+ è dalla parte del nodo maggiore)
-        verso_positivo indica quindi dove si trova il terminale.
+    /* Build the right-hand-side vector (size k)
+    For each source in cycle j:
+        dir = +1 if traversed in the canonical direction (smaller node --> larger node), -1 otherwise;
+        verso_positivo[e] = true  --> canonical goes from + to - --> contribution -V (dir * (-1) * V) (+ is on the smaller-node side)
+        verso_positivo[e] = false --> canonical goes from - to + --> contribution +V (dir * (+1) * V) (+ is on the larger-node side)
+        verso_positivo therefore indicates where the terminal is located.
 
-    Il contributo dipende da come la maglia attraversa il generatore: percorrendo il ciclo, se entro nel generatore 
-    dal nodo - ed esco dal +, allora contribuisce con +V; viceversa, se entro nel generatore dal nodo + ed esco dal -, 
-    allora contribuisce con -V. 
-    Ricordare che verso_positivo è true se il terminale + coincide con il verso canonico dell'arco, cioè dal 
-    nodo minore al nodo maggiore.
+    The contribution depends on how the mesh crosses the source: while traversing the cycle, if we enter the source
+    from the - node and exit from the +, it contributes +V; conversely, if we enter from the + node and exit from the -,
+    it contributes -V.
+    Recall that verso_positivo is true if the + terminal matches the canonical direction of the edge, i.e. from the
+    smaller node to the larger node.
     */
     Eigen::VectorXd v = Eigen::VectorXd::Zero(k);
     for (int j = 0; j < k; j++) {
@@ -110,7 +110,7 @@ RisultatoCircuit circuit(
             T v_node = cycle[(s+1)%L]; 
             int idx = G.edge_number(edge<T>(u_node, v_node));
             if (idx == -1) continue;
-            if (edge_data_map.at(E[idx]).tipologia != TipoComponente::Generatore) continue;     // seleziono solo i generatori
+            if (edge_data_map.at(E[idx]).tipologia != TipoComponente::Generatore) continue;     // select only the voltage sources
 
             int dir = (u_node < v_node) ? +1 : -1;
             double sgn = edge_data_map.at(E[idx]).verso_positivo ? -1.0 : +1.0;
@@ -118,27 +118,27 @@ RisultatoCircuit circuit(
         }
     }
 
-    // Segnalo che ci siano circuiti senza generatori (i_maglia = 0)
+    // Report circuits with no sources (i_maglia = 0)
     const double tol = 1e-12;
     if (v.norm() < tol) {
         std::cout << "WARNING: nessun generatore nel circuito, tutte le correnti sono zero.\n";
     } 
 
-    /* Sistema lineare A = B^T * R * B e poi A * i_maglia = v 
-    A è simmetrica definita positiva di dimensione k x k) */
+    /* Linear system A = B^T * R * B, then A * i_maglia = v
+    A is symmetric positive definite of size k x k */
     Eigen::MatrixXd A = B.transpose() * R * B;
 
-    // Risolvo il sistema lineare con Gradiente Coniugato
+    // Solve the linear system with the Conjugate Gradient method
     const int iter_max = 10000;
     GCDResult res_gcd = gradiente_cd(A, v, tol, iter_max);
     Eigen::VectorXd i_maglia = res_gcd.x;
    
-    // Controllo se il residuo è troppo grande: questo significherebbe che il sistema non è stato 
-    // risolto con sufficiente precisione (matrice singolare o mal condizionata)
+    // Check whether the residual is too large: this would mean the system was not 
+    // solved accurately enough (singular or ill-conditioned matrix)
     double norm_v = v.norm();
     double err = 0.0;
     if (norm_v < tol) {
-	//si evita la divisione per zero e si valuta la stabilità con l'errore assoluto
+	// avoid division by zero and assess stability using the absolute error
 	err = (A * i_maglia -v).norm();
     }
     else {
@@ -151,11 +151,11 @@ RisultatoCircuit circuit(
 	return {};
     }
 
-    /* Correnti totale su ogni arco ottenuta come sovrapposizione delle correnti di maglia
-    Tensioni su ogni arco con legge di Ohm: V = R * I  (V_tot = R * B * i_maglia)
+    /* Total current on each edge, obtained as the overlap of the mesh currents
+    Voltages on each edge via Ohm's law: V = R * I  (V_tot = R * B * i_maglia)
     */
     Eigen::VectorXd I_tot = B * i_maglia;   
-    Eigen::VectorXd V_tot = R * I_tot;      // corrente su arco i nel verso canonico
+    Eigen::VectorXd V_tot = R * I_tot;      // current on edge i in the canonical direction
 
 
     RisultatoCircuit r;
@@ -170,7 +170,7 @@ RisultatoCircuit circuit(
 }
 
 
-// stampa risultato 
+// print result 
 void stampa_risultati(const RisultatoCircuit& r)
 {
     std::cout << "\n --- RISULTATI CIRCUITO ---\n";
@@ -181,5 +181,5 @@ void stampa_risultati(const RisultatoCircuit& r)
     }
 }
 
-// inizialmente la funzione circuit restituiva void e stampava direttamente
-// a schermo i risultati ma per i test ho bisogno di salvarli per usarli 
+// initially the circuit function returned void and printed the results 
+// directly to screen, but for the tests they need to be saved for later use

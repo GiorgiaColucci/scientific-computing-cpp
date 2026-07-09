@@ -4,8 +4,8 @@
 #include <vector>
 
 
-/* COMPONENTE
-   Rappresenta un elemento del circuito (resistore o generatore).
+/* COMPONENT
+   Represents a circuit element (resistor or voltage source).
 */
 
 enum class TipoComponente {
@@ -23,9 +23,9 @@ struct Componente {
 
 
 /* OUTPUT
- * Risultato della lettura della netlist.
- *   - ok          : true se il parsing e' andato bene, false se c'e' stato un errore
- *   - componenti  : lista dei componenti letti (in caso di errore puo' essere parziale)
+ * Result of reading the netlist.
+ *   - ok          : true if parsing succeeded, false if there was an error
+ *   - componenti  : list of parsed components (may be partial in case of error)
  */
 
 struct Output {
@@ -35,34 +35,34 @@ struct Output {
 
 
 /* parse_netlist
-    Legge una netlist dal file 'filename' e restituisce un Output
+    Reads a netlist from file 'filename' and returns an Output
 
-    Formato atteso: NOME VALORE NODO1 NODO2
-    es:              R1    20     1     2
+    Expected format: NAME VALUE NODE1 NODE2
+    e.g.:            R1    20    1     2
 
-    dove: - NOME inizia con 'R' o 'V'
-          - VALORE è maggiore di 0
-          - NODO1 e NODO2 double positivi
+    where: - NAME starts with 'R' or 'V'
+           - VALUE is greater than 0
+           - NODE1 and NODE2 are positive doubles
 
-    Si prosegue se:
-        - sono presenti righe vuote o di soli spazi bianchi
-        - spazi e tab multipli tra le colonne 
-        - nome inizia con 'r' o 'v' (diventano 'R' e 'V')
-        - file vuoto (restituisce vettore vuoto)
-        - nodo decimale approssimabile a intero
+    Continues when:
+        - there are empty or whitespace-only lines
+        - multiple spaces and tabs between columns
+        - the name starts with 'r' or 'v' (normalized to 'R' and 'V')
+        - the file is empty (returns an empty vector)
+        - a decimal node index that rounds to an integer
 
-    Warning (prosegue con scelte di default)
-        - presenza di campi in eccesso dopo i primi 4 attesi -> si tengono solo i primi 4
-        - resistenza negativa -> uso valore assoluto
-        - componente già presente in una riga precedente --> salto la riga mantenendo la prima occorrenza
+    Warnings (continues with default choices)
+        - extra fields beyond the first 4 expected -> only the first 4 are kept
+        - negative resistance -> absolute value is used
+        - component already present in an earlier line -> the line is skipped, keeping the first occurrence
 
-    Errori
-        - file non apribile
-        - riga con campi mancanti o errori di battitura
-        - tipo componente sconosciuto (prefisso del nome diverso da 'R' o 'V')
-        - nodi coincidenti sullp stesso componente
-        - indice nodo non positivo 
-        - VALORE resistenza = 0
+    Errors
+        - file cannot be opened
+        - line with missing fields or typos
+        - unknown component type (name prefix other than 'R' or 'V')
+        - coincident nodes on the same component
+        - non-positive node index
+        - resistance VALUE = 0
 */
 
 

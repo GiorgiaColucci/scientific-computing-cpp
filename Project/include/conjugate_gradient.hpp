@@ -1,7 +1,7 @@
 #pragma once
 #include <Eigen/Dense>
 
-// Solo dichiarazione e struct
+// Declaration and struct only
 
 struct GCDResult
 {

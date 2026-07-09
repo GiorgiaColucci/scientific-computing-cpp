@@ -10,11 +10,11 @@
 #include "binary_diff.hpp"
 template <typename T>
 std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
-	// 1. Estrazione del primo arco per inizializzare la visita
+	// 1. Extract the first edge to initialize the visit
 	edge<T> first_edge = G.edge_at(0);
 	T first_node = first_edge.from();
 
-	// 2. Creazione dell'albero di ricoprimento T e del coalbero C
+	// 2. Build the spanning tree T and the cotree C
 	lifo<T> q;
 	graph<T> T_graph = graph_visit(G, first_node, q);
 	graph<T> C_graph = G - T_graph;
@@ -23,12 +23,12 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 	std::set<T> V = G.all_nodes();
 	const int m = static_cast<int>(E.size());
 	const int n = static_cast<int>(V.size());
-	const int k = m - n + 1;		// numero di cicli fondamentali (dimensione base)
+	const int k = m - n + 1;		// number of fundamental cycles (basis size)
 
-	// Verifica che il numero di cicli sia corretto
+	// heck that the number of cycles is correct
     if ( k <= 0 ) { return {}; }
 
-	// 3. Inizializzazione della base S_big
+	// 3. Inizialize the basis S_big
 	std::vector<std::vector<bool>> S_big(k);
 	for (int i = 0; i < k; i++) {
 		S_big.at(i).resize(m);
@@ -42,13 +42,13 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 		}
 	}
 
-	// 4. Mappatura dei nodi in ID numerici per la costruzione di G_prime (G')
+	// 4. Map nodes to numeric IDs to build G_prime (G')
 	std::map<T, int> node_to_id;
 	std::vector<T> id_to_node(n);
 	int v_index = 0;
 	for (const T& v : V) {
 		id_to_node.at(v_index) = v;
-		node_to_id[v]= v_index;		//qui va bene [] perchè è una mappa
+		node_to_id[v]= v_index;		// here [] is fine because it is a map
 		v_index++;
 	}
 
@@ -57,7 +57,7 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 	for (int i = 0; i < k; i++) {
 		graph<int> G_prime;
 
-		// 5. Costruzione del grafo ausiliario sdoppiato G_prime (G')
+		// 5. Build the doubled auxiliary graph G_prime (G')
 		for (const edge<T>& e : E) {
 			T u = e.from();
 			T v = e.to();
@@ -85,9 +85,9 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 		}
 
 		std::vector<bool> C_best(m);
-		int best_count_ones = m + 1; //inizializzato come caso peggiore, + 1 per evitare loop infinito nel caso H del test
+		int best_count_ones = m + 1; // initialized to the worst case, +1 to avoid an infinite loop in the test's H case
 
-		// 6. Ricerca del ciclo più corto (Shortest Odd Cycle) (dijkstra)
+		// 6. Find the shortest cycle (Shortest Odd Cycle) (dijkstra)
 		for (const T& v : V){
 			int v_minus = node_to_id[v];
 
@@ -96,11 +96,11 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 			std::map<int, std::optional<int>> predecessors = SSSP.second;
 
 			double dist_v_minus_to_v_plus = distances[v_minus + n];
-			if (dist_v_minus_to_v_plus == -1.0) {		// -1 funge da sentinella "infinito"
+			if (dist_v_minus_to_v_plus == -1.0) {		// -1 acts as an "infinity" sentinel  
 				continue;
 			}
 			
-			// Ricostruzione del percorso
+			// Reconstruct the path
 			std::vector<int> current_path;
 			current_path.reserve(dist_v_minus_to_v_plus);
 			int current_node = v_minus + n;
@@ -109,13 +109,13 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 				current_path.push_back(current_node);
 				current_node = predecessors[current_node].value();
 			}
-			current_path.push_back(v_minus); //alternativa alla gestione dell'eccezione std::bad_optional_access;
+			current_path.push_back(v_minus); // alternative to handling the std::bad_optional_access exception;
 			
 			std::reverse(current_path.begin(), current_path.end());
 			
 			std::vector<bool> C(m);
 			for (size_t l = 0; l < current_path.size() - 1; l++) {
-				T u_in = id_to_node.at(current_path[l] % n);		// % n mappa v+ al nodo originale
+				T u_in = id_to_node.at(current_path[l] % n);		// % n maps v+ back to the original node
 				T v_in = id_to_node.at(current_path[l+1] % n);
 				
 				edge<T> e_current(u_in,v_in);
@@ -136,7 +136,7 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 			}
 		}
 
-		// 7. Aggiornamento degli altri insiemi S
+		// 7. Update the other S sets
 		for (int j = i + 1; j < k; j++) {
 			int dot_prod_value = dot_prod(S_big.at(j), C_best);
 			if (dot_prod_value == 1) {
@@ -144,9 +144,9 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 			}
 		}
 
-		// 8. Ricostruzione topologica del ciclo per l'output in B[i]
+		// 8. opological reconstruction of the cycle for output in B[i]
 		std::vector<T> C_return;
-		int index_primo = 0; //scelto il valore minimo possibile
+		int index_primo = 0; // chosen as the smallest possible value
 		bool flag_primo_trovato = false;
 		const int C_len = static_cast<int>(C_best.size());
 		T root_C;
@@ -175,7 +175,7 @@ std::vector<std::vector<T>> De_Pina(const graph<T>& G) {
 					T v_from = e.from();
 					T v_to = e.to();
 					
-					if (v_from == current_node_C) {  //considerando che non ci sia un arco da un nodo a se stesso
+					if (v_from == current_node_C) {  // assuming there is no self-loop (edge from a node to itself)
 						C_return.push_back(v_to);
 						C_best.at(i_C_2) = 0;
 						current_node_C = v_to;

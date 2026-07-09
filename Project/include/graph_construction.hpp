@@ -6,14 +6,13 @@
 #include "edge.hpp"
 #include "graph.hpp"
 
-/* Costruzione del grafo G a partire dalla netlist. 
-Costruzione di una mappa che associa gli archi ad una struttura edge_data contenente a sua volta:
-	- Tipologia che associa agli archi il tipo di componente che è su quell'arco.
-	- Valori che associa a ogni arco il valore numerico del componente.
-	- Controllo del verso canonico dell'arco coincide con il verso della netlist (true se n_min --> n_max).
-	- Nome del componente, per la stampa
+/* Build of graph G from the netlist.
+Build of a map that associates each edge with an edge_data structure that in turn contains:
+	- Type: the kind of component on that edge.
+	- Value: the numeric value of the component on that edge.
+	- Whether the canonical direction of the edge matches the direction in the netlist (true if n_min --> n_max).
+	- Component name, for printing
 */
-
 
 struct edge_data {
 	TipoComponente tipologia;

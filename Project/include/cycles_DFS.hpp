@@ -1,13 +1,13 @@
 #pragma once
 #include <vector>
 #include <set>
-#include <iostream>         // per std::cerr
+#include <iostream>         // for std::cerr
 
 #include "edge.hpp"
 #include "graph.hpp"
 #include "recursive_DFS.hpp"
 
-// trovo il cammino da 'radice' a 'dest' usando una  Recursive_DFS; 
+// find the path from 'root' to 'dest' using a Recursive_DFS; 
 template <typename T>
 bool dfs_path(const graph<T>& T_graph, const T& current, const T& dest, 
                 std::set<T>& visited, std::vector<T>& path)
@@ -15,7 +15,7 @@ bool dfs_path(const graph<T>& T_graph, const T& current, const T& dest,
     visited.insert(current);
     path.push_back(current);
 
-    if (current == dest) return true;        //destinazione raggiunta
+    if (current == dest) return true;        //destination reached
 
     for (const T& v: T_graph.neighbours(current)) {
         if (visited.find(v) == visited.end()) {
@@ -25,7 +25,7 @@ bool dfs_path(const graph<T>& T_graph, const T& current, const T& dest,
         }
     }
 
-    path.pop_back();        //backtrack: questo ramo non porta a dest quindi lo rimuovo
+    path.pop_back();        // backtrack: this branch does not lead to dest, so remove it
     return false;
 }
 
@@ -48,17 +48,17 @@ std::vector<std::vector<T>> cicli_DFS(const graph<T>& G) {
     const std::vector<edge<T>> coalbero = C_graph.all_edges();
     const int k = static_cast<int>(coalbero.size());
 
-    // Verifica che il numero di cicli sia corretto
+    // Check that the number of cycles is correct
     if ( k <= 0) { return {}; }
 
     std::vector<std::vector<T>> cicli(k);
 
     for (int j = 0; j < k; j++) {
-        T a = coalbero[j].from();       // a < b per costruzione di edge<T>
+        T a = coalbero[j].from();       // a < b by construction of edge<T>
         T b = coalbero[j].to();
-        cicli[j] = find_path(T_graph, a , b);       // chiusura implicita b --> a
+        cicli[j] = find_path(T_graph, a , b);       // implicit closure b --> a
 
-        // Verifica che il cammino sia stato trovato 
+        // Check that the path was found
         if (cicli[j].empty()) {
             std::cerr << "ERRORE: cammino non trovato tra " << a << " e " << b << "\n";
             return {};
