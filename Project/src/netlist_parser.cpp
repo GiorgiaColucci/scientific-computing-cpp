@@ -33,16 +33,15 @@ static std::string normalizza_csv(const std::string& s)
 //  this function was created because printing an error is needed often
 static void stampa_errore (const int n_riga, const std::string& riga, const std::string& messaggio) 
 {
-    std::cerr << "Errore nella riga " << n_riga << ": " << messaggio << "\n"
-              << "Riga: " << riga << "\n";
+    std::cerr << "Error on line " << n_riga << ": " << messaggio << "\n"
+              << "Line: " << riga << "\n";
 }
 
 static void stampa_warning (const int n_riga, const std::string& riga, const std::string& messaggio) 
 {
-    std::cerr << "Avviso alla riga " << n_riga << ": " << messaggio << "\n"
-                  << "Riga: " << riga << "\n";
+    std::cerr << "Warning on line " << n_riga << ": " << messaggio << "\n"
+              << "Line: " << riga << "\n";
 }
-
 
 
 // MAIN FUNCTION //
@@ -53,7 +52,7 @@ Output parse_netlist (const std::string& filename) {
     // Open file 
     std::ifstream in(filename);
     if (!in) {
-        std::cerr << "ERRORE: impossibile aprire il file " << filename << "\n";
+        std::cerr << "ERROR: cannot open file " << filename << "\n";
         out.ok=false;
         return out;
     }
@@ -80,7 +79,7 @@ Output parse_netlist (const std::string& filename) {
 		
 		// mfewer fields than expected
         if (!(iss >> nome >> valore >> n1_letto >> n2_letto)) {
-            stampa_errore (n_riga, riga, std::string("ERRORE: attesi 4 campi (NOME VALORE NODO1 NODO2)"));
+            stampa_errore (n_riga, riga, std::string("ERROR: expected 4 fields (NAME VALUE NODE1 NODE2)"));
             out.ok = false;
             return out;
         }
@@ -88,7 +87,7 @@ Output parse_netlist (const std::string& filename) {
         // extra fields: keep only the first 4
         std::string extra;
         if (iss >> extra) {
-            stampa_warning (n_riga, riga, std::string("WARNING: trovati campi in eccesso dopo i 4 attesi: verranno considerati solo i primi 4"));
+            stampa_warning (n_riga, riga, std::string("WARNING: extra fields found after the expected 4: only the first 4 will be used"));
         }
 
 		int n1 = 0;
@@ -98,12 +97,12 @@ Output parse_netlist (const std::string& filename) {
 		int n1_arrotondato = static_cast<int>(std::round(n1_letto));
 		if (std::abs(n1_letto - n1_arrotondato) < 1e-12) {
 			if (n1_letto != n1_arrotondato) {
-				stampa_warning(n_riga, riga, std::string("WARNING: nodo n1 inserito come decimale, arrotondato ad intero"));
+				stampa_warning(n_riga, riga, std::string("WARNING: node n1 given as a decimal, rounded to an integer"));
 			}
 			n1 = n1_arrotondato;
 		}
 		else {
-			stampa_errore(n_riga, riga, std::string("ERRORE: il nodo n1 inserito come decimale non è riconducibile a un intero"));
+			stampa_errore(n_riga, riga, std::string("ERROR: node n1 given as a decimal is not reducible to an integer"));
 			out.ok = false;
 			return out;
 		}
@@ -111,12 +110,12 @@ Output parse_netlist (const std::string& filename) {
 		int n2_arrotondato = static_cast<int>(std::round(n2_letto));
 		if (std::abs(n2_letto - n2_arrotondato) < 1e-12) {
 			if (n2_letto != n2_arrotondato) {
-				stampa_warning(n_riga, riga, std::string("WARNING: nodo n2 inserito come decimale, arrotondato ad intero"));
+				stampa_warning(n_riga, riga, std::string("WARNING: node n2 given as a decimal, rounded to an integer"));
 			}
 			n2 = n2_arrotondato;
 		}
 		else {
-			stampa_errore(n_riga, riga, std::string("ERRORE: il nodo n2 inserito come decimale non è riconducibile a un intero"));
+			stampa_errore(n_riga, riga, std::string("ERROR: node n2 given as a decimal is not reducible to an integer"));
 			out.ok = false;
 			return out;
 		}
@@ -131,21 +130,21 @@ Output parse_netlist (const std::string& filename) {
         } else if (prefisso=='V') {
             tipo = TipoComponente::Generatore;
         } else {
-            stampa_errore (n_riga, riga, std::string("ERRORE: tipo componente sconosciuto: prefisso atteso 'R' o 'V', trovato") + prefisso);
+            stampa_errore (n_riga, riga, std::string("ERROR: unknown component type: expected prefix 'R' or 'V', found") + prefisso);
             out.ok=false;
             return out;
         }
 
         // coincident nodes
         if (n1 == n2) {
-            stampa_errore (n_riga, riga, std::string("ERRORE: i due nodi del componente coincidono"));
+            stampa_errore (n_riga, riga, std::string("ERROR: the two nodes of the component coincide"));
             out.ok=false;
             return out;
         }
 
 		//n egative or zero nodes
         if (n1<=0 || n2<=0) {
-            stampa_errore(n_riga, riga, std::string("ERRORE: nodo non valido, sono ammessi solo valori positivi"));
+            stampa_errore(n_riga, riga, std::string("ERROR: invalid node, only positive values are allowed"));
             out.ok=false;
             return out;
         }
@@ -155,12 +154,12 @@ Output parse_netlist (const std::string& filename) {
         if (tipo == TipoComponente::Resistore) {
             const double tol = 1e-15;
             if (std::abs(valore) < tol ) {   
-                stampa_errore(n_riga, riga, std::string("ERRORE: resistenza pari a zero non ammessa"));
+                stampa_errore(n_riga, riga, std::string("ERROR: zero resistance is not allowed"));
                 out.ok=false;
                 return out;
             }
             if (valore<-(tol)) {   
-                stampa_warning(n_riga, riga, std::string("WARNING: resistenza negativa, scelto il valore assoluto"));
+                stampa_warning(n_riga, riga, std::string("WARNING: negative resistance, absolute value used"));
                 valore=-valore;
             }
         }
@@ -175,7 +174,7 @@ Output parse_netlist (const std::string& filename) {
         }
 
         if (duplicato) {
-            stampa_warning(n_riga, riga, std::string("WARNING: nome componente già presente, questa riga viene ignorata e si mantiene la prima occorrenza"));
+            stampa_warning(n_riga, riga, std::string("WARNING: component name already present, this line is ignored and the first occurrence is kept"));
             continue;   // not inserted into the vector
         }
 
@@ -197,7 +196,7 @@ Output parse_netlist (const std::string& filename) {
         }
 
         if (parallelo) {
-            stampa_warning(n_riga, riga, std::string("WARNING: è già presente un componente sullo stesso arco. NON sono ammessi componenti in parallelo. La riga viene ignorata"));
+            stampa_warning(n_riga, riga, std::string("WARNING: a component already exists on the same edge. Parallel components are NOT allowed. The line is ignored"));
             continue;
         }
 

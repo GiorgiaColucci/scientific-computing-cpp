@@ -38,7 +38,7 @@ RisultatoCircuit circuit(
     const int k = static_cast<int>(cicli.size());         // number of independent meshes;
 
     if (k == 0) {
-        std::cout << "Il circuito non presenta maglie chiuse da analizzare.\n";
+        std::cout << "The circuit has no closed meshes to analyze.\n";
         return {};
     }
 
@@ -47,7 +47,7 @@ RisultatoCircuit circuit(
     T radice_conn = G.edge_at(0).from();
     graph<T> T_conn = graph_visit(G, radice_conn, stack_conn);
     if (G.all_nodes().size() != T_conn.all_nodes().size()) {
-        std::cerr << "ERRORE: il grafo non è connesso\n";
+        std::cerr << "ERROR: the graph is not connected\n";
         return {}; 
     }
 
@@ -121,7 +121,7 @@ RisultatoCircuit circuit(
     // Report circuits with no sources (i_maglia = 0)
     const double tol = 1e-12;
     if (v.norm() < tol) {
-        std::cout << "WARNING: nessun generatore nel circuito, tutte le correnti sono zero.\n";
+        std::cout << "WARNING: no source in the circuit, all currents are zero.\n";
     } 
 
     /* Linear system A = B^T * R * B, then A * i_maglia = v
@@ -147,7 +147,7 @@ RisultatoCircuit circuit(
 
     const double tol_check = 1e-9;
     if (err > tol_check) {
-	std::cerr << "ERRORE: il sistema lineare non ha soluzione numericamente stabile" << "\n";
+	std::cerr << "ERROR: the linear system has no numerically stable solution" << "\n";
 	return {};
     }
 
@@ -173,7 +173,7 @@ RisultatoCircuit circuit(
 // print result 
 void stampa_risultati(const RisultatoCircuit& r)
 {
-    std::cout << "\n --- RISULTATI CIRCUITO ---\n";
+    std::cout << "\n --- CIRCUIT RESULTS ---\n";
     for (int i = 0; i < static_cast<int>(r.nomi_resistori.size()); i++) {
         std::cout << r.nomi_resistori[i]
                   << ": V = " << r.tensioni[i]

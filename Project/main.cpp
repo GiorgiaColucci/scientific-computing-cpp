@@ -2,7 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
-#include <cctype> //for toupper
+#include <cctype> // for toupper
 
 #include "lifo.hpp"
 #include "graph_visit.hpp"
@@ -16,15 +16,15 @@
 // Print usage message
 void stampa_uso (const char* nome_prog)
 {
-    std::cout << "Uso: "<< nome_prog << " <path/della/netlist> \n"
-              << "ESEMPIO:  " << nome_prog << " netlists/esempio_traccia.txt \n";
+    std::cout << "Usage: "<< nome_prog << " <path/to/netlist> \n"
+              << "EXAMPLE:  " << nome_prog << " netlists/sample.txt \n";
 }
 
 int main(int argc, char* argv[])
 {
     // there must be exactly one path
     if (argc<2) {
-        std::cerr << "ERRORE: numero di argomenti errato\n";
+        std::cerr << "ERROR: wrong number of arguments\n";
         stampa_uso(argv[0]);
         return EXIT_FAILURE;
     }
@@ -33,9 +33,9 @@ int main(int argc, char* argv[])
 	std::string scelta;
     
 	while(true) {
-		std::cout << "Scegliere l'algoritmo per il calcolo dei cicli: \n"
-				  << "[1] per  De Pina (cicli minimi) \n"
-				  << "[2] per DFS \n";
+		std::cout << "Choose the algorithm for cycle computation: \n"
+				  << "[1] De Pina (minimum cycles) \n"
+				  << "[2] DFS \n";
 		std::cin >> scelta;
 		if (scelta == "2") {
 			usa_dfs = true;
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
 			break;
 		}
 		else {
-			std::cout << "Scelta non valida! Per favore, inserisci 1 o 2.\n\n";
+			std::cout << "Invalid choice! Please enter 1 or 2.\n\n";
 		}
 	}
 
@@ -57,12 +57,12 @@ int main(int argc, char* argv[])
     }
 
     if (result.componenti.empty()) {
-        std::cerr << "ERRORE: la netlist " << path_netlist 
-                  << " non contiene componenti\n";
+        std::cerr << "ERROR: netlist " << path_netlist 
+                  << " contains no components\n";
         return EXIT_FAILURE;
     }
 
-    // BUuld the graph and the auxiliary maps 
+    // Build the graph and the auxiliary maps 
     std::map<edge<int>, edge_data> edge_data_map;
 
     graph<int> G = costruisci_grafo(result, edge_data_map);
@@ -74,7 +74,7 @@ int main(int argc, char* argv[])
 
     // check that the graph is connected
     if (T_graph.all_nodes().size() != G.all_nodes().size()) {
-	std::cerr << "ERRORE: il grafo del circuito non è connesso\n";
+	std::cerr << "ERROR: the circuit graph is not connected\n";
     	return EXIT_FAILURE;
     }
 
@@ -84,13 +84,13 @@ int main(int argc, char* argv[])
     const int n_maglie      = n_componenti - n_nodi + 1;
 
     std::cout   <<"\n" << "Netlist:    " << path_netlist   << "\n"
-                << "Nodi:       " << n_nodi         << "\n"
-                << "Componenti: " << n_componenti   << "\n"
-                << "Maglie:     " << n_maglie       << "\n"
-                << "Metodo:     " << (usa_dfs ? "DFS" : "De Pina") << "\n";
+                << "Nodes:       " << n_nodi         << "\n"
+                << "Components:  " << n_componenti   << "\n"
+                << "Meshes:      " << n_maglie       << "\n"
+                << "Method:      " << (usa_dfs ? "DFS" : "De Pina") << "\n";
 
     if (n_maglie <= 0) {
-        std::cerr << "ERRORE: il grafo del circuito non ha cicli\n";
+        std::cerr << "ERROR: the circuit graph has no cycles\n";
         return EXIT_FAILURE; 
     }
 
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
     }
 
     if (cicli.empty()) {
-        std::cerr << "ERRORE: nessun ciclo trovato. \n";
+        std::cerr << "ERROR: no cycle found. \n";
         return EXIT_FAILURE;
     }
 
@@ -113,13 +113,13 @@ int main(int argc, char* argv[])
 
     stampa_risultati(r);
 
-    bool stampa = false; // Si di default
+    bool stampa = false; // yes as default
 	std::string scelta_stampa;
 
     while(true) {
-		std::cout << "\nVuoi stampare i grafi? \n"
-				  << "[Y] per si \n"
-				  << "[N] per no \n";
+		std::cout << "\nExport the graphs? \n"
+				  << "[Y] yes \n"
+				  << "[N] no \n";
 		std::cin >> scelta_stampa;
 		for (char& c : scelta_stampa) {
       			c = static_cast<char>(std::toupper(static_cast<unsigned char>(c)));
@@ -132,28 +132,28 @@ int main(int argc, char* argv[])
 			break;
 		}
 		else {
-			std::cout << "Scelta non valida! Per favore, inserisci Y o N.\n\n";
+			std::cout << "Invalid choice! Please enter Y or N.\n\n";
 		}
 	}
 
     // To get the graph images with GraphViz, the graphs must be translated into 
     // the DOT language (abstract grammar for defining Graphviz nodes, edges, graphs,
-    //  subgraphs, and clusters)
+    // subgraphs, and clusters)
     if (stampa) {          // or ask the user before returning
-        const std::string grafo_dot = "grafo_principale.dot";
-        const std::string grafo_png = "grafo.png";
-        const std::string coalb_dot = "coalbero.dot";
-        const std::string coalb_png = "coalbero.png";
+        const std::string grafo_dot = "main_graph.dot";
+        const std::string grafo_png = "graph.png";
+        const std::string coalb_dot = "cotree.dot";
+        const std::string coalb_png = "cotree.png";
         
         to_dot(G,        grafo_dot, edge_data_map);
         to_dot(C_graph,  coalb_dot, edge_data_map); 
 
-        std::cout << "Grafo del circuito esportato in \"" << grafo_dot << "\".\n"
-              << "Per generare l'immagine usa il comando:\n"
+        std::cout << "Circuit graph exported to \"" << grafo_dot << "\".\n"
+              << "To generate the image run:\n"
               << "  dot -Tpng " << grafo_dot << " -o " << grafo_png << "\n\n";
 
-        std::cout << "Coalbero del circuito esportato in \"" << coalb_dot << "\".\n"
-              << "Per generare l'immagine usa il comando:\n"
+        std::cout << "Circuit cotree exported to \"" << coalb_dot << "\".\n"
+              << "To generate the image run:\n"
               << "  dot -Tpng " << coalb_dot << " -o " << coalb_png << "\n\n";
     }
 
