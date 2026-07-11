@@ -1,9 +1,0 @@
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/measure_sorts.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test_bubblesort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test_insertionsort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test_selectionsort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test_mergesort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test_quicksort.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/test.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/edit_cache.dir
-/home/pcsdocker/Data/Esercitazioni_PCS_2026/esercitazione5/build_release/CMakeFiles/rebuild_cache.dir
