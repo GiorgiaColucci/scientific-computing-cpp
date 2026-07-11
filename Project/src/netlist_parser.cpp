@@ -8,7 +8,7 @@
 #include <algorithm>
 #include <typeinfo> // for the type info 
 
-// solo_spazivuoti --> restituisce true se la stringa s contiene solo spazi/tab/\n
+// solo_spazivuoti --> returns true if string s contains only spaces/tabs/\n
 static bool solo_spazivuoti(const std::string& s) 
 {
     for (char c : s) {
@@ -19,9 +19,9 @@ static bool solo_spazivuoti(const std::string& s)
     return true;
 }
 
-// normalizza_csv - restituisce una copia della riga in cui le virgole sono
-// sostituite da spazi, così operator>> puo' leggere correttamente anche netlist 
-// in formato CSV (es. "R1,20,1,2").
+// normalizza_csv - returns a copy of the line with commas 
+// replaced by spaces, so that operator>> can also correctly read netlists 
+// in CSV format (e.g. "R1,20,1,2").
 static std::string normalizza_csv(const std::string& s)
 {
     std::string norm = s;
@@ -30,7 +30,7 @@ static std::string normalizza_csv(const std::string& s)
 }
  
 
-// ho creato questa funzione in quanto spesso si richiede di stampare un errore 
+//  this function was created because printing an error is needed often
 static void stampa_errore (const int n_riga, const std::string& riga, const std::string& messaggio) 
 {
     std::cerr << "Errore nella riga " << n_riga << ": " << messaggio << "\n"
@@ -45,12 +45,12 @@ static void stampa_warning (const int n_riga, const std::string& riga, const std
 
 
 
-// FUNZIONE PRINCIPALE //
+// MAIN FUNCTION //
 Output parse_netlist (const std::string& filename) {  
     Output out;
-    out.ok=true;    // diventa false al primo errore
+    out.ok=true;    // becomes false at the first error
 
-    // Apertura file 
+    // Open file 
     std::ifstream in(filename);
     if (!in) {
         std::cerr << "ERRORE: impossibile aprire il file " << filename << "\n";
@@ -61,32 +61,31 @@ Output parse_netlist (const std::string& filename) {
     std::string riga;
     int n_riga=0;
 
-    while (std::getline(in,riga))    // while(!in.eof) processa una riga di troppo (stesso errore in prima esercitazione)
+    while (std::getline(in,riga))    // while(!in.eof) would process one line too many (off-by-one errors or infinite loops)
     {
-        ++n_riga;   //metto cosi e non alla fine n_riga++ perche quando faccio continue poi non incremento 
-
+        ++n_riga;   // placed here rather than n_riga++ at the end, because with 'continue' it would not be incremented
         const std::string riga_norm = normalizza_csv(riga);
         
-        // Salto righe vuote o solo spazi vuoti 
+        // Skip empty or whitespace-only lines
         if (solo_spazivuoti(riga_norm)) {
             continue;
         }
 
-        // Estraggo i campi NOME VALORE NODO1 NODO2
-        std::istringstream iss(riga_norm); // invece di scorrere ogni riga a mano questo lo fa in automatico
+        // EExtract the fields NAME VALUE NODE1 NODE2
+        std::istringstream iss(riga_norm); // instead of scanning each line by hand, this does it automatically
         std::string nome;
         double valore;
         double n1_letto;
         double n2_letto;
 		
-		// meno campi di quelli attesi
+		// mfewer fields than expected
         if (!(iss >> nome >> valore >> n1_letto >> n2_letto)) {
             stampa_errore (n_riga, riga, std::string("ERRORE: attesi 4 campi (NOME VALORE NODO1 NODO2)"));
             out.ok = false;
             return out;
         }
 
-        // campi in eccesso: prendo solo i primi 4 
+        // extra fields: keep only the first 4
         std::string extra;
         if (iss >> extra) {
             stampa_warning (n_riga, riga, std::string("WARNING: trovati campi in eccesso dopo i 4 attesi: verranno considerati solo i primi 4"));
@@ -95,7 +94,7 @@ Output parse_netlist (const std::string& filename) {
 		int n1 = 0;
 		int n2 = 0;
 
-		// Controllo decimali
+		// Checks decimals
 		int n1_arrotondato = static_cast<int>(std::round(n1_letto));
 		if (std::abs(n1_letto - n1_arrotondato) < 1e-12) {
 			if (n1_letto != n1_arrotondato) {
@@ -123,9 +122,9 @@ Output parse_netlist (const std::string& filename) {
 		}
 		
 
-        // Valutazione prefisso 
+        // Evaluate prefix
         TipoComponente tipo;
-        const char prefisso = static_cast<char>(std::toupper(static_cast<unsigned char>(nome[0]))); // preso da https://cppreference.com/cpp/string/byte/toupper
+        const char prefisso = static_cast<char>(std::toupper(static_cast<unsigned char>(nome[0]))); // taken by https://cppreference.com/cpp/string/byte/toupper
 
         if (prefisso=='R') {
             tipo = TipoComponente::Resistore;
@@ -137,22 +136,22 @@ Output parse_netlist (const std::string& filename) {
             return out;
         }
 
-        // nodi coincidenti 
+        // coincident nodes
         if (n1 == n2) {
             stampa_errore (n_riga, riga, std::string("ERRORE: i due nodi del componente coincidono"));
             out.ok=false;
             return out;
         }
 
-		//nodi negativi o uguali a zero
+		//n egative or zero nodes
         if (n1<=0 || n2<=0) {
             stampa_errore(n_riga, riga, std::string("ERRORE: nodo non valido, sono ammessi solo valori positivi"));
             out.ok=false;
             return out;
         }
 
-        // Validazione del valore del resitore
-        // Nel caso generatore seV<0 dovrebbe significare che la polarità è rovesciata, se V=0 spento
+        // Validate the resistor value
+        // For a source, V<0 should mean reversed polarity, V=0 means off
         if (tipo == TipoComponente::Resistore) {
             const double tol = 1e-15;
             if (std::abs(valore) < tol ) {   
@@ -166,23 +165,23 @@ Output parse_netlist (const std::string& filename) {
             }
         }
 
-        // Nome duplicato
+        // Duplicate name
         bool duplicato = false;
         for (const Componente& c : out.componenti) {
             if (c.nome == nome) {
                 duplicato = true;
-                break;  // appena trovato esco dal for 
+                break;  // exit the loop as soon as it is foun
             }
         }
 
         if (duplicato) {
             stampa_warning(n_riga, riga, std::string("WARNING: nome componente già presente, questa riga viene ignorata e si mantiene la prima occorrenza"));
-            continue;   // non inserita nel vettore
+            continue;   // not inserted into the vector
         }
 
-        // CONTROLLO PARALLELI: due componenti sullo stesso arco non sono ammessi.
-        // Normalizziamo la coppia di nodi a (min, max) per gestire anche il caso
-        // "V1 30 2 1" che e' lo stesso arco di "R1 20 1 2".
+        // PARALLEL CHECK: two components on the same edge are not allowed.
+        // Normalize the node pair to (min, max) to also handle the case 
+        // "V1 30 2 1", which is the same edge as "V1 30 1 2"
 
         int n_min=std::min(n1,n2);
         int n_max=std::max(n1,n2);
@@ -202,7 +201,7 @@ Output parse_netlist (const std::string& filename) {
             continue;
         }
 
-        // Se è tutto ok
+        // If everything is fine
         Componente c;
         c.tipo = tipo;
         c.nome = nome;

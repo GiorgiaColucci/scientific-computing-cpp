@@ -4,9 +4,6 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-// potrei fare anche un unico file che contiene tutti gli errori 
-// e stranezze possibili, ho diviso in modo da avere piu chiaro
-// ditemi voi se meglio insieme
 
 static const double tol = 1e-12;
 
@@ -19,7 +16,7 @@ static std::string scrivi_file(const std::string& contenuto)
     return filename;
 }
 
-// 1. Netlist traccia 
+// 1. Reference netlist 
 static int test_parse_traccia()
 {
     auto path = scrivi_file(
@@ -60,7 +57,7 @@ static int test_parse_traccia()
 }
 
 
-// 2. Righe vuote
+// 2. Empty lines
 static int test_parse_righe_vuote() 
 {
     auto path= scrivi_file(
@@ -81,7 +78,7 @@ static int test_parse_righe_vuote()
 }
 
 
-// 3. Spazi multipli e tab
+// 3. Multiple spaces and tabs
 static int test_parse_spazi_multipli() 
 {
     auto path = scrivi_file(
@@ -112,7 +109,7 @@ static int test_parse_spazi_multipli()
 }
 
 
-// 4. Prefisso minuscolo
+// 4. Lowercase prefix
 static int test_parse_minuscolo() 
 {
     auto path = scrivi_file (
@@ -133,7 +130,7 @@ static int test_parse_minuscolo()
 }
 
 
-// 5. File vuoto 
+// 5. Empty file
 static int test_parse_file_vuoto() 
 {
     auto path = scrivi_file("");
@@ -149,7 +146,7 @@ static int test_parse_file_vuoto()
 }
 
 
-// 6. File con solo spazi bianchi: stesso risultato di qurllo di sopra
+// 6. File with only whitespace: same result as the previous one
 static int test_parse_file_solo_whitespace()
 {
     auto path = scrivi_file(
@@ -168,7 +165,7 @@ static int test_parse_file_solo_whitespace()
 }
 
 
-// 7. Nodo double 
+// 7. Double node
 static int test_parse_nodo_decimale_esatto()
 {
     auto path = scrivi_file("R1 10 1.0 2.0\n");
@@ -184,9 +181,9 @@ static int test_parse_nodo_decimale_esatto()
 }
 
 
-// TEST WARNING 
+// WARNING TESTS
 
-// 8. Campi in eccesso: tenuti solo i primi 4
+// 8. Extra fields: only the first 4 are kept
 static int test_warning_extra()
 {
     auto path = scrivi_file("R1 10 1 2 EXTRA1 EXTRA2\n");
@@ -202,7 +199,7 @@ static int test_warning_extra()
     return EXIT_SUCCESS;
 }
 
-// 9. Resistenza negativa: viene usato il valore assoluto
+// 9. Negative resistance: the absolute value is used
 static int test_warning_resistenza_negativa()
 {
     auto path = scrivi_file("R1 -15.5 1 2\n");
@@ -218,12 +215,12 @@ static int test_warning_resistenza_negativa()
     return EXIT_SUCCESS;
 }
 
-// 10. Nome duplicato: warning + mantieni la prima occorrenza
+// 10. Duplicate name: warning + keep the first occurrence
 static int test_warning_nome_duplicato()
 {
     auto path = scrivi_file(
                 "R1 10 1 2\n"
-                "R1 20 3 4\n"     // duplicato → warning + skip
+                "R1 20 3 4\n"     // duplicate → warning + skip
                 "R2 30 2 3\n");
     Output res = parse_netlist(path);
 
@@ -241,12 +238,12 @@ static int test_warning_nome_duplicato()
     return EXIT_SUCCESS;
 }
 
-// 11. Componenti in parallelo: warning + skip del secondo
+// 11. Components in parallel: warning + skip the second
 static int test_warning_componenti_paralleli()
 {
     auto path = scrivi_file(
                 "R1 10 1 2\n"
-                "V1 30 1 2\n"     // stesso arco di R1 → skip
+                "V1 30 1 2\n"     // same edge as R1 → skip
                 "R3 5 2 3\n");
     Output res = parse_netlist(path);
 
@@ -263,12 +260,12 @@ static int test_warning_componenti_paralleli()
     return EXIT_SUCCESS;
 }
 
-// 12. Componenti in parallelo con nodi invertiti
+// 12. Components in parallel with swapped nodes
 static int test_warning_paralleli_nodi_invertiti()
 {
     auto path = scrivi_file(
                 "R1 10 1 2\n"
-                "V1 30 2 1\n");    // stessi nodi ma invertiti → stesso arco
+                "V1 30 2 1\n");    // same nodes but swapped → same edge
     Output res = parse_netlist(path);
 
     if (!res.ok || res.componenti.size() != 1
@@ -282,9 +279,9 @@ static int test_warning_paralleli_nodi_invertiti()
 
 
 
-// Test: ERRORI (ok = false)
+// Tests: ERRORS (ok = false)
 
-// 13. Riga malformata: campi mancanti
+// 13. Malformed line: missing fields
 static int test_error_riga_malformata()
 {
     auto path = scrivi_file("R1 10 1\n");
@@ -298,7 +295,7 @@ static int test_error_riga_malformata()
     return EXIT_SUCCESS;
 }
 
-// 14. Errore di battitura nei numeri (es. '20a')
+// 14. Typo in the numbers (e.g. '20a')
 static int test_error_battitura_numero()
 {
     auto path = scrivi_file("R1 20a 1 2\n");
@@ -312,7 +309,7 @@ static int test_error_battitura_numero()
     return EXIT_SUCCESS;
 }
 
-// 15. Tipo componente sconosciuto (non R ne' V)
+// 15. Unknown component type (neither R nor V)
 static int test_error_tipo_sconosciuto()
 {
     auto path = scrivi_file("X1 10 1 2\n");
@@ -326,7 +323,7 @@ static int test_error_tipo_sconosciuto()
     return EXIT_SUCCESS;
 }
 
-// 16. Nodi coincidenti sullo stesso componente
+// 16. Coincident nodes on the same component
 static int test_error_nodi_uguali()
 {
     auto path = scrivi_file("R1 10 2 2\n");
@@ -340,7 +337,7 @@ static int test_error_nodi_uguali()
     return EXIT_SUCCESS;
 }
 
-// 17. Indice nodo non positivo: 0 o negativo
+// 17. Non-positive node index: 0 or negative
 static int test_error_nodo_non_positivo()
 {
     auto path = scrivi_file("R1 10 0 2\n");
@@ -362,7 +359,7 @@ static int test_error_nodo_non_positivo()
     return EXIT_SUCCESS;
 }
 
-// 18. Resistenza pari a zero
+// 18. Zero resistance
 static int test_error_resistenza_zero()
 {
     auto path = scrivi_file("R1 0 1 2\n");
@@ -376,7 +373,7 @@ static int test_error_resistenza_zero()
     return EXIT_SUCCESS;
 }
 
-// 19. File non apribile (inesistente)
+// 19. File that cannot be opened (nonexistent)
 static int test_error_file_inesistente()
 {
     Output res = parse_netlist("__file_che_non_esiste_12345__.txt");
@@ -389,7 +386,7 @@ static int test_error_file_inesistente()
     return EXIT_SUCCESS;
 }
 
-// 20. Nodi decimali NON interi (es. 1.5)
+// 20. Decimal node indices that are NOT integers (e.g. 1.5)
 static int test_error_nodo_decimale()
 {
     auto path = scrivi_file("R1 10 1.5 2\n");
@@ -410,7 +407,7 @@ int main()
 {
     int falliti = 0;
 
-    // Parsing pulito
+    // Clean parsing
     falliti += test_parse_traccia()                  == EXIT_SUCCESS ? 0 : 1;
     falliti += test_parse_righe_vuote()              == EXIT_SUCCESS ? 0 : 1;
     falliti += test_parse_spazi_multipli()           == EXIT_SUCCESS ? 0 : 1;
@@ -426,7 +423,7 @@ int main()
     falliti += test_warning_componenti_paralleli()   == EXIT_SUCCESS ? 0 : 1;
     falliti += test_warning_paralleli_nodi_invertiti() == EXIT_SUCCESS ? 0 : 1;
 
-    // Errori
+    // Errors
     falliti += test_error_riga_malformata()          == EXIT_SUCCESS ? 0 : 1;
     falliti += test_error_battitura_numero()         == EXIT_SUCCESS ? 0 : 1;
     falliti += test_error_tipo_sconosciuto()         == EXIT_SUCCESS ? 0 : 1;
@@ -445,12 +442,3 @@ int main()
         return EXIT_FAILURE;
     }
 }
-
-
-
-
-
-
-
-// controllo ilc aso in cui mancano spazi tra dati?
-// controllo separatore diverso: ;

@@ -3,7 +3,8 @@
 #include <set>
 #include "edge.hpp"
 template <typename T>
-//trasformazione di un ciclo di nodi in un insieme di archi non orientati
+
+// transform a cycle of nodes into a set of undirected edges
 std::set<edge<T>> normalize_cycle(const std::vector<T>& cycle) {
 	std::set<edge<T>> edges;
 	if (cycle.size() < 2) {
@@ -18,9 +19,12 @@ std::set<edge<T>> normalize_cycle(const std::vector<T>& cycle) {
 	return edges;
 }
 
-/*trasformazione di una base di cicli minimi di nodi in un set di set di archi.
-l'ordinamento interno è dato dall'operator overloading del minore per il confronto tra archi, l'ordinamento esterno è di tipo lessicografico
+/* 
+transform a minimum cycle basis of nodes into a set of sets of edges.
+the inner ordering comes from the overloaded less-than operator for comparing 
+edges; the outer ordering is lexicographic
 */
+
 template<typename U>
 std::set<std::set<edge<U>>> normalize_basis (const std::vector<std::vector<U>>& basis) {
 	std::set<std::set<edge<U>>> normalized_basis;

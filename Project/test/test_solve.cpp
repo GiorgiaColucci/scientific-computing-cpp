@@ -10,11 +10,11 @@
 #include <cmath>
 
 /* The test
-    1) Read the netlist from 'sample.txt
-    2) Construct the graph
-    3) Calculates the cycles
+    1) Read the netlist from 'sample.txt'
+    2) Builds the graph
+    3) Compute the cycles
     4) Solves the system
-    5) Verifica che le tensioni e correnti coincidano con valori attesi 
+    5) Checks that voltages and currents match the expexted values
     
      R1: V =  8 volts, I =  2.0 amps
      R2: V = 22 volts, I =  2.2 amps
@@ -25,8 +25,8 @@
 
 static const std::string NETLIST = "sample.txt";
 
-// Leggo netlist e dichiaro le variabili globali di grafo + mappa; inizializzo
-// poi in main()
+// Read the netlist and declare the global graph + map variables; 
+// initialize later in main()
 Output dati;
 std::map<edge<int>, edge_data> edge_data_map;
 
@@ -46,8 +46,7 @@ static const std::map<std::string, Riferimento> RIFERIMENTO = {
     {"R5", {12.0,  3.0}},
 };
 
-// Confronta il risultato del solver con i valori di riferimento, indicizzando
-// per nome del resistore
+// Compare the solver result with the reference values, indexing / by resistor name
 static bool risultati_corretti(const RisultatoCircuit& r, const std::string& nome_test)
 {
     if (r.nomi_resistori.size() != RIFERIMENTO.size()) {
@@ -79,7 +78,7 @@ static bool risultati_corretti(const RisultatoCircuit& r, const std::string& nom
     return ok;
 }
 
-// 1) Risoluzione con cicli fondamentali (DFS + coalbero)
+// 1) Solve using fundamental cycles (DFS + cotree)
 static int test_solve_dfs()
 {
     auto cicli = cicli_DFS(G);
@@ -92,7 +91,7 @@ static int test_solve_dfs()
     return EXIT_SUCCESS;
 }
 
-// 2) Risoluzione con cicli minimi (De Pina)
+// 2) Solve using minimum cycles (De Pina)
 static int test_solve_depina()
 {
     auto cicli = De_Pina(G);
@@ -107,7 +106,7 @@ static int test_solve_depina()
 
 int main()
 {
-    // Se il file non si trova si esce subito, senza crashare dentro le funzioni di test
+    // If the file is not found we exit immediately, without crashing inside the test functions
     dati = parse_netlist(NETLIST);
     if (!dati.ok) {
         std::cerr << "ERRORE: impossibile leggere la netlist\n";

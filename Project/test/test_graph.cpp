@@ -6,20 +6,19 @@
 #include <map>
 #include <cmath>
 
-/* Test unitari per costruisci_grafo a partire dalla netlist 'sample.txt'
-   (5 nodi, 7 componenti)
-  
-   Il test:
-     1) legge sample.txt con parse_netlist
-     2) costruisce il grafo con costruisci_grafo
-     3) verifica nodi, archi
+/* Unit tests for graph construction from the netlist 'sample.txt'
+   (5 nodes, 7 components)
+
+   The test:
+     1) reads sample.txt with parse_netlist
+     2) builds the graph with the graph-construction function
+     3) checks nodes and edges
 */
- 
 
 static const std::string NETLIST= "sample.txt";
 
-// Leggo netlist e dichiaro le variabili globali di grafo + mappa; inizializzo 
-// poi in main(); (le funzioni di test sono static e le accedono direttamente)
+// Read the netlist and declare the global graph + map variables; initialize 
+// later in main(); (the test functions are static and access them directly)
 Output dati;
 
 std::map<edge<int>, edge_data> edge_data_map;
@@ -27,7 +26,7 @@ std::map<edge<int>, edge_data> edge_data_map;
 graph<int> G;
 static const double tol = 1e-7;
 
-// 1. Numero nodi e archi
+// 1. Number of nodes and edges
 static int test_grafo_dim() 
 {
     if (!dati.ok) {
@@ -46,7 +45,7 @@ static int test_grafo_dim()
     return EXIT_SUCCESS;
 }
 
-// 2. Tipologia: R1 su (2,4), V1 su (1,4), V2 su (3,5) 
+// 2. Type: R1 on (2,4), V1 on (1,4), V2 on (3,5) 
 static int test_grafo_tipologia()
 {
     if (edge_data_map.at(edge<int>(2,4)).tipologia != TipoComponente::Resistore) {
@@ -68,7 +67,7 @@ static int test_grafo_tipologia()
     return EXIT_SUCCESS;
 }
 
-// 3. Valori
+// 3. Values
 static int test_grafo_valori()
 {
     if (std::abs(edge_data_map.at(edge<int>(2,4)).valori - 4.0)  > tol ||  
@@ -82,7 +81,7 @@ static int test_grafo_valori()
     return EXIT_SUCCESS;
 }
 
-// 4. Verso Positivo 
+// 4. Positive direction 
 static int test_grafo_verso_positivo()
 {
     if (!edge_data_map.at(edge<int>(1,4)).verso_positivo) {
@@ -101,7 +100,7 @@ static int test_grafo_verso_positivo()
     return EXIT_SUCCESS;
 }
 
-// 5. Nomi
+// 5. Names
 static int test_grafo_nomi()
 {
     if (edge_data_map.at(edge<int>(2,4)).nome != "R1" ||
@@ -118,8 +117,8 @@ static int test_grafo_nomi()
  
 int main()
 {
-    // Inizializzazione qui: se il file non si trova si esce subito, senza
-    // crashare dentro le funzioni di test
+    // Initialize here: if the file is not found we exit immediately, 
+    // without crashing inside the test functions
     dati = parse_netlist(NETLIST);
     if (!dati.ok) {
         std::cerr << "ERRORE: impossibile leggere la netlist\n";
