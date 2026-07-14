@@ -47,7 +47,7 @@ The repository is organized to cleanly separate the weekly learning exercises fr
 └── README.md            # This file (overall presentation)
 ```
 
-### 1. 📘 Exercises (`/Esercitazioni`)
+### 1. 📘 Exercises (`/Exercises`)
 
 This folder contains the exercises developed throughout the course, organized as a progressive path that starts from the fundamentals of C++ and builds up to advanced data structures, graph algorithms, and numerical methods for scientific computing.
 
