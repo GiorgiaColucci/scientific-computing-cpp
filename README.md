@@ -99,6 +99,7 @@ The core of the repository, applying the concepts of the course to a real scient
 ## 👤 Author
 
 - **Giorgia Colucci** — *Mathematical Engineering student at Politecnico di Torino*
+- [![LinkedIn](https://img.shields.io/badge/LinkedIn-Giorgia%20Colucci-0A66C2?logo=linkedin)](https://www.linkedin.com/in/giorgia-colucci) 
 - GitHub: [@GiorgiaColucci](https://github.com/GiorgiaColucci)
 
 The final project in `/Project` was developed together with Diego Catellani and Angelamaria Colucci.
