@@ -1,34 +1,73 @@
-# Metodo delle Correnti di Maglia - PCS 2026
+# Mesh Current Method — PCS 2026
 
-Progetto di **Programmazione e Calcolo Scientifico** (a.a. 2025–2026).
-Questo progetto dimostra come strumenti di teoria dei grafi e algebra lineare possano essere combinati per risolvere problemi reali di analisi circuitale in modo automatico ed efficiente.
-Implementazione in C++ del **metodo delle correnti di maglia** per la risoluzione
-di circuiti elettrici composti da resistori e generatori ideali di
-tensione, sfruttando strumenti di teoria dei grafi e algebra lineare numerica.
+![C++](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus&logoColor=white)
+![CMake](https://img.shields.io/badge/build-CMake-064F8C?logo=cmake&logoColor=white)
+![Eigen](https://img.shields.io/badge/linear%20algebra-Eigen%203.3%2B-6c3483)
+![Graphviz](https://img.shields.io/badge/visualization-Graphviz-F27E1E)
+![Tests](https://img.shields.io/badge/tests-unit%20tested-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-## Panoramica
+Project for the *Scientific Programming and Computing* course (academic year 2025–2026).
+This project shows how graph theory and linear algebra can be combined to solve real circuit-analysis problems automatically and efficiently.
+It is a C++ implementation of the **mesh current method** (loop analysis) for solving electrical circuits made of resistors and ideal voltage sources, leveraging graph theory and numerical linear algebra.
 
-Dato un circuito descritto in una **netlist**, il programma:
-1. legge e valida la netlist che descrive il circuito;
-2. costruisce il grafo associato;
-3. individua le maglie (cicli del grafo) con due algoritmi alternativi:
-   **DFS + coalbero** (cicli fondamentali) oppure **De Pina** (cicli minimi);
-4. assembla il sistema lineare delle correnti di maglia e lo risolve con Eigen;
-5. stampa, per ciascun resistore, la tensione e la corrente.
+## Overview
 
-## Autori
+Given a circuit described by a **netlist**, the program:
+1. reads and validates the netlist describing the circuit;
+2. builds the associated graph;
+3. finds the meshes (graph cycles) using one of two alternative algorithms:
+   **DFS + cotree** (fundamental cycles) or **De Pina** (minimum cycles);
+4. assembles the linear system of mesh currents and solves it with Eigen;
+5. prints the voltage and current for each resistor.
 
-- Catellani Diego
-- Colucci Angelamaria
-- Colucci Giorgia 
+## Authors
 
-## Requisiti
+- Diego Catellani
+- Angelamaria Colucci
+- Giorgia Colucci
+
+## Requirements
 
 - **CMake** ≥ 3.20
-- **g++** o **clang++** con supporto a C++20
-- **Eigen** ≥ 3.3 (libreria header-only per algebra lineare)
+- **g++** or **clang++** with C++20 support
+- **Eigen** ≥ 3.3 (header-only linear algebra library)
+- **Graphviz** (optional, only to render the exported `.dot` graphs as images)
 
-## Compilazione
+### Installing the dependencies
+
+**Ubuntu / Debian**
+```bash
+sudo apt update
+sudo apt install cmake g++ libeigen3-dev graphviz
+```
+
+**macOS (Homebrew)**
+```bash
+brew install cmake eigen graphviz
+```
+
+Eigen is header-only: alternatively you can download it from
+[eigen.tuxfamily.org](https://eigen.tuxfamily.org) and point CMake to its
+include path.
+
+## Quick Start
+
+Clone, build, and run on the sample netlist in one go:
+
+```bash
+git clone https://github.com/GiorgiaColucci/scientific-computing-cpp.git
+cd scientific-computing-cpp/Project
+mkdir build && cd build
+cmake ..
+make
+./main ../sample.txt
+```
+
+At the prompts, choose an algorithm (e.g. `1` for De Pina) and optionally
+export the graphs (`Y`). See the [example output](#example) below.
+
+## Build
 
 ```bash
 mkdir build
@@ -37,71 +76,73 @@ cmake ..
 make
 ```
 
-## Esecuzione
+## Run
 
 ```
-./main <path/della/netlist>
+./main <path/to/netlist>
 ```
 
-All'avvio il programma chiede da terminale quale algoritmo usare per il calcolo dei cicli:
+At startup the program asks from the terminal which algorithm to use for cycle computation:
 
 ```
-Scegliere l'algoritmo per il calcolo dei cicli:
-[1] per De Pina (cicli minimi)
-[2] per DFS
-```
-Dopo aver stampato i risultati, chiede anche se esportare i grafi in formato DOT (Graphviz):
-
-```
-Vuoi stampare i grafi?
-[Y] per sì
-[N] per no
+Choose the algorithm for cycle computation:
+[1] De Pina (minimum cycles)
+[2] DFS
 ```
 
-Rispondendo `Y` vengono creati `grafo_principale.dot` (il grafo del circuito) e
-`coalbero.dot` (il coalbero), convertibili in immagine con:
+After printing the results, it also asks whether to export the graphs in DOT (Graphviz) format:
 
 ```
-dot -Tpng grafo_principale.dot -o grafo.png
-dot -Tpng coalbero.dot -o coalbero.png
+Print the graphs?
+[Y] yes
+[N] no
 ```
 
-## Formato della netlist
+Answering `Y` generates `main_graph.dot` (the circuit graph) and
+`cotree.dot` (the cotree), which can be converted to images with:
 
-Una riga per componente, campi separati da whitespace:
 ```
-NOME  VALORE  NODO1  NODO2
+dot -Tpng main_graph.dot -o graph.png
+dot -Tpng cotree.dot -o cotree.png
 ```
 
-- **NOME** comincia con `R` (resistore) o `V` (generatore di tensione).
-- **VALORE** è in ohm per i resistori, volt per i generatori.
-- **NODO1**, **NODO2** sono interi positivi. Per i generatori l'ordine
-  indica la polarità: NODO1 = terminale "+", NODO2 = terminale "−".
+## Netlist Format
 
-Il parser è **tollerante** a:
-- spazi e tab multipli tra le colonne;
-- righe vuote o di solo whitespace;
-- prefisso in minuscolo (`r1`, `v2`).
-- nodi decimali (es: 1.0)
+One line per component, fields separated by whitespace:
+```
+NAME  VALUE  NODE1  NODE2
+```
 
-Genera **warning** (proseguendo con scelte di default) per:
-- campi in eccesso dopo i 4 attesi (vengono usati i primi 4);
-- resistenza negativa (viene presa in valore assoluto);
-- nome di componente duplicato (viene mantenuta la prima occorrenza);
-- componenti in parallelo (viene mantenuta la prima occorrenza).
+- **NAME** starts with `R` (resistor) or `V` (voltage source).
+- **VALUE** is in ohms for resistors, volts for sources.
+- **NODE1**, **NODE2** are positive integers. For sources, the order
+  encodes polarity: NODE1 = "+" terminal, NODE2 = "−" terminal.
 
-Restituisce **errore** (e termina) per:
-- file non apribile;
-- riga malformata o errori di battitura nei numeri;
-- tipo di componente diverso da R o V;
-- nodi coincidenti sullo stesso componente;
-- indice di nodo non positivo;
-- nodo decimale non riconducibile a un intero;
-- resistenza pari a zero.
+The parser is **tolerant** of:
+- multiple spaces and tabs between columns;
+- empty or whitespace-only lines;
+- lowercase prefixes (`r1`, `v2`);
+- decimal node indices (e.g. `1.0`);
+- comma-separated (CSV) netlists, e.g. `R1,20,1,2` — see [`CSV_test.csv`](CSV_test.csv) for an example.
 
-## Esempio
+It emits **warnings** (and continues with default choices) for:
+- extra fields beyond the expected 4 (only the first 4 are used);
+- negative resistance (its absolute value is taken);
+- duplicate component name (the first occurrence is kept);
+- components in parallel (the first occurrence is kept).
 
-Con una netlist `sample.txt`:
+It returns an **error** (and terminates) for:
+- a file that cannot be opened;
+- a malformed line or typos in the numeric fields;
+- a component type other than R or V;
+- coincident nodes on the same component;
+- a non-positive node index;
+- a decimal node index that is not an integer;
+- zero resistance.
+
+## Example
+
+With a netlist `sample.txt`:
 ```
 V1 30 1 4
 V2 40 3 5
@@ -112,15 +153,15 @@ R4 10 3 2
 R5 4  2 5
 ```
 
-`./main sample.txt` produce un output del tipo:
+`./main ../sample.txt` produces output such as:
 ```
-Netlist:    sample.txt
-Nodi:       5
-Componenti: 7
-Maglie:     3
-Metodo:     De Pina
+Netlist:     sample.txt
+Nodes:       5
+Components:  7
+Meshes:      3
+Method:      De Pina
 
---- RISULTATI CIRCUITO ---
+--- CIRCUIT RESULTS ---
 R1: V =  8 volts, I =  2 amps
 R2: V = 22 volts, I = 2.2 amps
 R3: V = -6 volts, I = -0.2 amps
@@ -128,97 +169,115 @@ R4: V = -28 volts, I = -2.8 amps
 R5: V = 12 volts, I =  3 amps
 ```
 
-## Struttura del progetto
+Answering `Y` to the graph-export prompt produces the following visualizations
+of this same circuit (the graph of `sample.txt` and its cotree):
+
+| Circuit graph | Cotree |
+|:---:|:---:|
+| ![Circuit graph](images/circuit_graph.png) | ![Cotree](images/cotree.png) |
+
+## Project Structure
 
 ```
-pcs2026/
-|-- CMakeLists.txt          
-|-- README.md                   
-|-- main.cpp                        # punto di ingresso del programma
-|-- sample.txt						            # usato nei test 
+Project/
+|-- CMakeLists.txt
+|-- README.md
+|-- main.cpp                        # program entry point
+|-- sample.txt                      # used in tests
 |
-|-- include/                        # file header (intestazioni)
-|   |-- netlist_struct.hpp          # struct Componente, Output
-|   |-- edge.hpp                    # classe edge<T>: arco non orientato
-|   |-- graph.hpp                   # classe graph<T>: grafo non orientato
-|   |-- graph_visit.hpp             # DFS / BFS 
-|   |-- fifo.hpp, lifo.hpp          # coda / pila
-|   |-- costruzione_grafo.hpp       # da netlist a grafo + mappe ausiliarie
-|   |-- cicli_DFS.hpp               # cicli fondamentali (DFS + coalbero)
-|   |-- de_pina.hpp                 # cicli minimi (algoritmo di De Pina)
-|   |-- dijkstra.hpp                # Dijkstra (usato da De Pina)
-|   |-- dot_prod.hpp                # prodotto scalare mod 2 (De Pina)
-|   |-- binary_diff.hpp             # differenza simmetrica (De Pina)
-|   |-- gradiente_cd.hpp            # gradiente coniugato (usato da solve.hpp)
-|   |-- solve.hpp                   # solver del sistema lineare con Eigen
-|   |-- stampa_archi.hpp            # stampa degli archi
-|   |-- stampa_grafi.hpp            # stampa dei grafi
+|-- include/                        # header files
+|   |-- netlist_struct.hpp          # Component, Output structs
+|   |-- edge.hpp                    # edge<T> class: undirected edge
+|   |-- graph.hpp                   # graph<T> class: undirected graph
+|   |-- graph_visit.hpp             # DFS / BFS
+|   |-- fifo.hpp, lifo.hpp          # queue / stack
+|   |-- graph_construction.hpp      # netlist to graph + auxiliary maps
+|   |-- cycles_DFS.hpp              # fundamental cycles (DFS + cotree)
+|   |-- recursive_DFS.hpp           # recursive DFS traversal
+|   |-- de_pina.hpp                 # minimum cycles (De Pina algorithm)
+|   |-- dijkstra.hpp                # Dijkstra (used by De Pina)
+|   |-- dot_prod.hpp                # mod-2 dot product (used by De Pina)
+|   |-- binary_diff.hpp             # symmetric difference (used by De Pina)
+|   |-- conjugate_gradient.hpp      # conjugate gradient (used by solve.hpp)
+|   |-- solve.hpp                   # linear system solver with Eigen
+|   |-- print_edges.hpp             # edge printing
+|   |-- print_graphs.hpp            # graph printing
 |
-|-- src/                            # file sorgente (implementazioni) 
-|   |-- netlist_parser.cpp           
-|   |-- grafo_construction.cpp       
-|   |-- cd_gradient.cpp             
+|-- src/                            # source files (implementations)
+|   |-- netlist_parser.cpp
+|   |-- graph_construction.cpp
+|   |-- conjugate_gradient.cpp
 |
-|-- tests/
-    |-- test_parser.cpp             # 20 test unitari sul parser
-    |-- test_grafo.cpp              # test sulla costruzione del grafo
-    |-- test_de_pina.cpp            # test sull'algoritmo di De Pina
-    |-- test_de_pina_helper.hpp     # supporto al test di De Pina
+|-- test/
+    |-- test_parser.cpp             # 20 unit tests on the parser
+    |-- test_graph.cpp              # tests on graph construction
+    |-- test_cycles_DFS.cpp         # tests on the DFS cycle basis
+    |-- test_de_pina.cpp            # tests on the De Pina algorithm
+    |-- test_de_pina_helper.hpp     # support for the De Pina tests
+    |-- test_solve.cpp              # tests on the linear-system solver
 ```
 
-## Fondamenti teorici 
+## Theoretical Background
 
-### Metodo delle correnti di maglia
+### Mesh current method
 
-Dato un grafo del circuito con `m` resistori e `n` maglie:
+Given a circuit graph with `m` resistors and `n` meshes:
 
-1. **B** ∈ ℝ^(m×n) — matrice di incidenza ciclo–arco: `B[i][j] = ±1` se il
-   resistore *i* appartiene alla maglia *j* (segno dato dal verso di
-   percorrenza), `0` altrimenti.
-2. **R** ∈ ℝ^(m×m) — matrice diagonale delle resistenze.
-3. **v** ∈ ℝ^n — vettore dei termini noti dato dai contributi dei generatori.
-4. Si risolve il sistema lineare **(BᵀRB) i = v** con metodo del Gradiente Coniugato ottenendo le correnti di
-   maglia.
-5. Le tensioni sui resistori si calcolano come **V_R = R B i**.
+1. **B** ∈ ℝ^(m×n) — cycle–edge incidence matrix: `B[i][j] = ±1` if
+   resistor *i* belongs to mesh *j* (sign given by the traversal
+   direction), `0` otherwise.
+2. **R** ∈ ℝ^(m×m) — diagonal matrix of resistances.
+3. **v** ∈ ℝ^n — right-hand-side vector given by the source contributions.
+4. The linear system **(BᵀRB) i = v** is solved with the Conjugate Gradient
+   method, yielding the mesh currents.
+5. The resistor voltages are computed as **V_R = R B i**.
 
-### Individuazione delle maglie
+### Mesh detection
 
-Per costruire il sistema delle correnti di maglia è necessario individuare una base di cicli del grafo associato al circuito.
+To build the mesh current system, a cycle basis of the graph associated with the circuit must be found.
 
-Sono implementati due **algoritmi alternativi** (selezionabili a runtime).
+Two **alternative algorithms** are implemented (selectable at runtime).
 
-#### DFS + coalbero
-Calcola un albero DFS *T* del grafo e prende il coalbero
-*C = G \ T*. Per ogni arco di coalbero, il cammino tra i suoi estremi in *T*
-chiuso dall'arco stesso forma un ciclo fondamentale. Non garantisce cicli
-minimi.
+#### DFS + cotree
+Computes a DFS tree *T* of the graph and takes the cotree
+*C = G \ T*. For each cotree edge, the path between its endpoints in *T*
+closed by the edge itself forms a fundamental cycle. Does not guarantee
+minimum cycles.
 
-#### Algoritmo di De Pina 
-Usa algebra lineare su vettori booleani per
-costruire una **base di cicli minimi**. Internamente utilizza un *lifting*
-del grafo e algoritmo di Dijkstra per trovare i cicli più corti.
+#### De Pina algorithm
+Uses linear algebra over boolean vectors to build a **minimum cycle basis**.
+Internally it uses a *lifting* of the graph and Dijkstra's algorithm to find
+the shortest cycles.
 
 ## Testing
 
-Il progetto include test unitari per:
+The project includes unit tests for:
 
-- parsing e validazione della netlist (20 casi di test);
-- costruzione del grafo;
-- algoritmo di De Pina.
+- netlist parsing and validation (20 test cases);
+- graph construction;
+- the DFS cycle basis;
+- the De Pina algorithm;
+- the linear-system solver.
 
-I test sono raccolti nella cartella `tests/`.
+The tests are collected in the `test/` folder and can be run with `ctest`.
 
-## Documentazione aggiuntiva
+## Additional Documentation
 
-La documentazione completa del progetto è disponibile nei file:
+The complete project documentation is available in:
 
-- `progetto.pdf`
-- `Presentazione.pdf`
+- `Project.pdf`
+- `Presentation.pdf`
 
-## Note
+## Notes
 
-- Le matrici prodotte dal solver sono di norma simmetriche e definite
-  positive; si usa quindi il metodo del gradiente coniugato per risolvere il 
-  sistema lineare.
+- The matrices produced by the solver are typically symmetric and positive
+  definite, so the Conjugate Gradient method is used to solve the linear
+  system.
 
-- Strumenti di AI generativa sono stati utilizzati esclusivamente a progetto completato e compilante senza warning, per analisi dei punti di forza e di debolezza dell'implementazione.
+- Generative AI tools were used exclusively after the project was complete and
+  compiling without warnings, to analyze the strengths and weaknesses of the
+  implementation.
+
+## License
+
+Released under the MIT License. See [LICENSE](../LICENSE) for details.

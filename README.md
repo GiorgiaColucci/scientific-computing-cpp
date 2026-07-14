@@ -1,72 +1,108 @@
-# Programmazione e Calcolo Scientifico (C++) 💻🧮
+# Scientific Programming and Computing (C++) 💻🧮
 
-Questo repository documenta il percorso svolto durante il corso di Programmazione e Calcolo Scientifico (a.a. 2025/2026), raccogliendo esercitazioni e progetti sviluppati in C++ sui temi di programmazione generica, strutture dati, teoria dei grafi, algebra numerica e calcolo scientifico.
+![C++](https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus&logoColor=white)
+![MATLAB](https://img.shields.io/badge/MATLAB-analysis-orange?logo=mathworks&logoColor=white)
+![CMake](https://img.shields.io/badge/build-CMake-064F8C?logo=cmake&logoColor=white)
+![Eigen](https://img.shields.io/badge/linear%20algebra-Eigen%203.3%2B-6c3483)
+![Graphviz](https://img.shields.io/badge/visualization-Graphviz-F27E1E)
+![License](https://img.shields.io/badge/license-MIT-blue)
 
-Il lavoro culmina nello sviluppo di un progetto completo per l'analisi automatica di circuiti elettrici mediante metodi numerici e algoritmi su grafi.
+This repository documents the work carried out during the *Scientific Programming and Computing* course (academic year 2025/2026), collecting the lab exercises and projects developed in C++ around generic programming, data structures, graph theory, numerical linear algebra, and scientific computing.
 
-L'obiettivo principale del corso è l'acquisizione di competenze avanzate nel linguaggio C++ applicato alla risoluzione di problemi matematici, simulazioni numeriche e calcolo scientifico. 
+The work culminates in a complete project for the automatic analysis of electrical circuits using numerical methods and algorithms on graphs.
 
-## 🛠️ Tecnologie e Strumenti utilizzati
-- **Linguaggio principale:** C++ (standard moderni), con Template Programming e utilizzo della STL
-- **Altri linguaggi:** MATLAB (per analisi e validazione dati)
-- **Algebra lineare e calcolo matriciale:** libreria Eigen
-- **Build Systems:** CMake, Makefile; build in modalità debug e release
-- **Ambiente di sviluppo:** Version control tramite Git/GitHub
-- **Esportazione e visualizzazione dei grafi:** GraphViz (formato DOT).
+<p align="center">
+  <img src="./Project/images/circuit_graph.png" alt="Circuit graph produced by the final project" height="320">
+  <br>
+  <em>Circuit graph automatically built and analyzed by the final project.</em>
+</p>
+
+The main goal of the course is to build advanced C++ skills applied to solving mathematical problems, running numerical simulations, and performing scientific computing.
+
+## 🛠️ Technologies and Tools
+
+- **Primary language:** C++ (modern standards), with Template Programming and use of the STL
+- **Other languages:** MATLAB (for data analysis and validation)
+- **Linear algebra and matrix computation:** Eigen library
+- **Build systems:** CMake and Makefile, with both debug and release builds
+- **Development environment:** version control with Git/GitHub
+- **Graph export and visualization:** GraphViz (DOT format)
 
 ---
 
-## 📂 Struttura del Repository
+## 📂 Repository Structure
 
-La struttura del repository è organizzata in modo logico e pulito per separare la fase di apprendimento settimanale dal lavoro sul progetto principale:
+The repository is organized to cleanly separate the weekly learning exercises from the work on the main project:
 
 ```text
 .
-├── Esercitazioni/       # Raccolta dei laboratori e dei temi settimanali
-│   ├── Esercitazione_01/
-│   ├── Esercitazione_02/
+├── Exercises/           # Collection of weekly labs and exercises
+│   ├── exercise_01/
+│   ├── exercise_02/
 │   └── ...
-├── Progetto/            # Codice sorgente del progetto d'esame finale
+├── Project/             # Source code of the final exam project
 │   ├── ...
-│   └── README.md        # Documentazione specifica e dettagliata del progetto
-├── .gitignore           # Esclusione dei file di build e di sistema
-└── README.md            # Questo file (presentazione globale)
+│   └── README.md        # Detailed, project-specific documentation
+├── .gitignore           # Excludes build artifacts and system files
+└── README.md            # This file (overall presentation)
 ```
 
-### 1. 📘 Esercitazioni (`/Esercitazioni`)
+### 1. 📘 Exercises (`/Esercitazioni`)
 
-La cartella contiene le esercitazioni sviluppate durante il corso, organizzate come un percorso progressivo che parte dai fondamenti del linguaggio C++ per arrivare a strutture dati avanzate, algoritmi su grafi e metodi numerici per il calcolo scientifico.
+This folder contains the exercises developed throughout the course, organized as a progressive path that starts from the fundamentals of C++ and builds up to advanced data structures, graph algorithms, and numerical methods for scientific computing.
 
-I temi affrontati includono l'implementazione pratica di::
+The topics covered include the hands-on implementation of:
 
-- Gestione della memoria tramite puntatori e smart pointers
-- Organizzazione del codice in file sorgente e header.
-- Programmazione orientata agli oggetti (classi e strutture dati personalizzate, costruttori, distruttori)
-- Template e generic programming
-- Utilizzo della Standard Template Library
-- Organizzazione e compilazione di progetti con CMake
-- Strutture dati e algoritmi su grafi: BFS, DFS e Dijkstra
-- Operazioni di algebra lineare numerica con Eigen
-- Metodi iterativi per la risoluzione di sistemi lineari
-- Algoritmi avanzati per la costruzione di basi di cicli minimi (De Pina)
-- Esportazione e visualizzazione di grafi tramite GraphViz (si vedano gli esempi prodotti nella cartella `build/` del progetto o dell'esercitazione 09)
+- Memory management with pointers and smart pointers
+- Code organization across source and header files
+- Object-oriented programming (custom classes and data structures, constructors, destructors)
+- Templates and generic programming
+- Use of the Standard Template Library
+- Project organization and compilation with CMake
+- Graph data structures and algorithms: BFS, DFS, and Dijkstra
+- Numerical linear algebra operations with Eigen
+- Iterative methods for solving linear systems
+- Advanced algorithms for building minimum cycle bases (De Pina)
+- Graph export and visualization with GraphViz (the rendered build outputs are collected in the `images/` folder of exercise_09)
 
-### 2. 🚀 Progetto Finale (`/Progetto`)
-Il nucleo principale del repository, che rappresenta l'applicazione pratica dei concetti del corso su un problema di calcolo scientifico reale.
+| Exercise | Topic |
+|:---:|---|
+| 01 | C++ fundamentals: I/O, control flow, basic programs |
+| 02 | Functions and an introduction to object-oriented programming |
+| 03 | Code organization across header and source files |
+| 04 | Sorting algorithms (bubble, insertion, selection) with timing and MATLAB plots |
+| 05 | Sorting benchmark (incl. hybrid quicksort), debug vs. release comparison |
+| 08 | Generic undirected graph and edge classes |
+| 09 | Graph traversals (BFS, DFS, Dijkstra) and Graphviz export |
+| 10 | Conjugate Gradient method for linear systems |
+| 11 | Cycle bases: fundamental cycles (DFS) and De Pina |
 
-#### Principali competenze software sviluppate
+> For Exercise 05, see the [dedicated README](./Exercises/exercise_05/README.md) with the Debug vs Release benchmark comparison.
 
-- Progettazione di strutture dati generiche in C++20
-- Implementazione di grafi non orientati e algoritmi di visita
-- Algoritmi per la ricerca di cicli (DFS, De Pina)
-- Risoluzione di sistemi lineari sparsi con Eigen
-- Testing unitario e validazione robusta dell'input
-- Build system con CMake
+### 2. 🚀 Final Project (`/Project`)
 
-**Nota:** Per istruzioni dettagliate sull'architettura software del progetto, i requisiti matematici, le dipendenze e la procedura guidata di compilazione/esecuzione, si prega di fare riferimento al **[README specifico presente all'interno della cartella Progetto](./Progetto/)**.
+The core of the repository, applying the concepts of the course to a real scientific computing problem.
+
+#### Key software skills developed
+
+- Design of generic data structures in C++20
+- Implementation of undirected graphs and graph traversal algorithms
+- Cycle-finding algorithms (DFS, De Pina)
+- Solving sparse linear systems with Eigen
+- Unit testing and robust input validation
+- Build automation with CMake
+
+**Note:** For detailed instructions on the software architecture of the project, the mathematical background, the dependencies, and the step-by-step build/run procedure, please refer to the **[dedicated README inside the Project folder](./Project/)**.
 
 ---
 
-## 👤 Autore
-- **Giorgia Colucci** - *Studentessa di Matematica per l'Ingegneria presso il Politecnico di Torino*
+## 👤 Author
+
+- **Giorgia Colucci** — *Mathematical Engineering student at Politecnico di Torino*
 - GitHub: [@GiorgiaColucci](https://github.com/GiorgiaColucci)
+
+The final project in `/Project` was developed together with Diego Catellani and Angelamaria Colucci.
+
+## 📄 License
+
+Released under the MIT License. See [LICENSE](./LICENSE) for details.
