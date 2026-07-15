@@ -52,10 +52,10 @@ int main() {
 	
 	if (guess_F != solution_F) {
 		global_res = EXIT_FAILURE;
-		std::cout << "Test su albero fallito" << "\n";
+		std::cout << "Tree test failed." << "\n";
 	}
 	else {
-		std::cout << "Test su albero riuscito" << "\n";
+		std::cout << "Tree test successful." << "\n";
 	}
 
 	// to make the comparison between guess and solution robust for graphs G 
@@ -68,18 +68,18 @@ int main() {
 
 	if (normalize_basis(guess_G) != normalize_basis(solution_G)) {
 		global_res = EXIT_FAILURE;
-		std::cout << "Test su grafo con cicli fallito" << "\n";
+		std::cout << "Test on graph with cycles failed." << "\n";
 	}
 	else {
-		std::cout << "Test su grafo con cicli riuscito" << "\n";
+		std::cout << "Test on graph with cycles successful." << "\n";
 	}
 
 	if (normalize_basis(guess_H) != normalize_basis(solution_H)) {
 		global_res = EXIT_FAILURE;
-		std::cout << "Test su grafo con un ciclo solo fallito" << "\n";
+		std::cout << "Test on graph with a single cycle failed." << "\n";
 	}
 	else {
-		std::cout << "Test su grafo con un ciclo solo riuscito" << "\n";
+		std::cout << "Test on graph with a single cycle successful." << "\n";
 	}
 
 	return global_res;

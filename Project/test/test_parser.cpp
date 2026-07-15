@@ -28,7 +28,7 @@ static int test_parse_traccia()
     Output risultato = parse_netlist(path);
 
     if (!risultato.ok || risultato.componenti.size() != 5) {
-        std::cerr << "ERRORE: test_parse_traccia: \n" 
+        std::cerr << "ERROR: test_parse_traccia: \n" 
                   << "ok= " << risultato.ok << "\n"
                   << "size= " << risultato.componenti.size() << "\n";
         return EXIT_FAILURE;
@@ -39,7 +39,7 @@ static int test_parse_traccia()
         c0.tipo != TipoComponente::Resistore ||
         abs(c0.valore-10.0) > tol ||
         c0.n1 != 1 || c0.n2 != 2) {
-        std::cerr << "ERRORE: test_parse_traccia: R1 non corrisponde\n";
+        std::cerr << "ERROR: test_parse_traccia: R1 doesn't match\n";
         return EXIT_FAILURE;
     }
 
@@ -48,7 +48,7 @@ static int test_parse_traccia()
         c3.tipo != TipoComponente::Generatore ||
         abs(c3.valore-10.0) > tol ||
         c3.n1 != 1 || c3.n2 != 3) {
-        std::cerr << "ERRORE: test_parse_traccia: V1 non corrisponde\n";
+        std::cerr << "ERROR: test_parse_traccia: V1 doesn't match\n";
         return EXIT_FAILURE;
         }
 
@@ -69,7 +69,7 @@ static int test_parse_righe_vuote()
     Output risultato = parse_netlist(path);
 
     if (!risultato.ok || risultato.componenti.size() != 2) {
-        std::cerr << "ERRORE: test_parse_righe_vuote\n\n";
+        std::cerr << "ERROR: test_parse_righe_vuote\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK]: test_parse_righe_vuote\n"
@@ -88,7 +88,7 @@ static int test_parse_spazi_multipli()
     Output risultato = parse_netlist(path);
         
     if (!risultato.ok || risultato.componenti.size() != 2) {
-    std::cerr << "ERRORE: test_parse_spazi_multipli: \n\n" 
+    std::cerr << "ERROR: test_parse_spazi_multipli: \n\n" 
               << "ok= " << risultato.ok << "\n"
               << "size= " << risultato.componenti.size() << "\n";
     return EXIT_FAILURE;
@@ -100,7 +100,7 @@ static int test_parse_spazi_multipli()
         v1.tipo != TipoComponente::Generatore ||
         abs(v1.valore-5.5) > tol ||
         v1.n1 != 3 || v1.n2 != 4) {
-        std::cerr << "ERRORE: test_parse_spazi_multipli: V1 non corrisponde\n";
+        std::cerr << "ERROR: test_parse_spazi_multipli: V1 doesn't matche\n";
         return EXIT_FAILURE;
     }
 
@@ -121,7 +121,7 @@ static int test_parse_minuscolo()
     if (!risultato.ok || risultato.componenti.size() != 2
         || risultato.componenti[0].tipo != TipoComponente::Resistore
         || risultato.componenti[1].tipo != TipoComponente::Generatore) {
-        std::cerr << "ERRORE: test_parse_minuscolo\n\n";
+        std::cerr << "ERROR: test_parse_minuscolo\n\n";
         return EXIT_FAILURE;
     }
 
@@ -138,7 +138,7 @@ static int test_parse_file_vuoto()
     Output risultato = parse_netlist(path);
 
     if (!risultato.ok || !risultato.componenti.empty()) {
-        std::cerr << "ERRORE: test_parse_file_vuoto\n\n";
+        std::cerr << "ERROR: test_parse_file_vuoto\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_parse_file_vuoto\n\n";
@@ -157,7 +157,7 @@ static int test_parse_file_solo_whitespace()
     Output res = parse_netlist(path);
 
     if (!res.ok || !res.componenti.empty()) {
-        std::cerr << "ERRORE: test_parse_file_solo_whitespace\n\n";
+        std::cerr << "ERROR: test_parse_file_solo_whitespace\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_parse_file_solo_whitespace\n\n";
@@ -173,7 +173,7 @@ static int test_parse_nodo_decimale_esatto()
 
     if (!risultato.ok || risultato.componenti.size() != 1
         || risultato.componenti[0].n1 != 1 || risultato.componenti[0].n2 != 2) {
-        std::cerr << "ERRORE: test_parse_nodo_decimale_esatto\n\n";
+        std::cerr << "ERROR: test_parse_nodo_decimale_esatto\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_parse_nodo_decimale_esatto\n\n";
@@ -192,7 +192,7 @@ static int test_warning_extra()
     if (!res.ok || res.componenti.size() != 1
         || res.componenti[0].nome != "R1"
         || std::abs(res.componenti[0].valore - 10.0) > tol) {
-        std::cerr << "ERRORE: test_warning_token_in_eccesso\n\n";
+        std::cerr << "ERROR: test_warning_token_in_eccesso\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_warning_token_in_eccesso\n\n";
@@ -207,7 +207,7 @@ static int test_warning_resistenza_negativa()
 
     if (!res.ok || res.componenti.size() != 1
         || std::abs(res.componenti[0].valore - 15.5) > tol) {
-        std::cerr << "ERRORE: test_warning_resistenza_negativa: valore="
+        std::cerr << "ERROR: test_warning_resistenza_negativa: value ="
                   << (res.componenti.empty() ? -1.0 : res.componenti[0].valore) << "\n\n";
         return EXIT_FAILURE;
     }
@@ -225,13 +225,13 @@ static int test_warning_nome_duplicato()
     Output res = parse_netlist(path);
 
     if (!res.ok || res.componenti.size() != 2) {
-        std::cerr << "ERRORE: test_warning_nome_duplicato: size="
+        std::cerr << "ERROR: test_warning_nome_duplicato: size ="
                   << res.componenti.size() << "\n\n";
         return EXIT_FAILURE;
     }
     if (res.componenti[0].nome != "R1"
         || std::abs(res.componenti[0].valore - 10.0) > tol) {
-        std::cerr << "ERRORE: test_warning_nome_duplicato: prima occorrenza alterata\n\n";
+        std::cerr << "ERROR: test_warning_nome_duplicato: altered first occurrence\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_warning_nome_duplicato\n\n";
@@ -248,12 +248,12 @@ static int test_warning_componenti_paralleli()
     Output res = parse_netlist(path);
 
     if (!res.ok || res.componenti.size() != 2) {
-        std::cerr << "ERRORE: test_warning_componenti_paralleli: size="
+        std::cerr << "ERROR: test_warning_componenti_paralleli: size ="
                   << res.componenti.size() << "\n\n";
         return EXIT_FAILURE;
     }
     if (res.componenti[0].nome != "R1" || res.componenti[1].nome != "R3") {
-        std::cerr << "ERRORE: test_warning_componenti_paralleli: nomi attesi R1,R3\\n";
+        std::cerr << "ERROR: test_warning_componenti_paralleli: expected names R1,R3\\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_warning_componenti_paralleli\n\n";
@@ -270,13 +270,12 @@ static int test_warning_paralleli_nodi_invertiti()
 
     if (!res.ok || res.componenti.size() != 1
         || res.componenti[0].nome != "R1") {
-        std::cerr << "ERRORE: test_warning_paralleli_nodi_invertiti\n\n";
+        std::cerr << "ERROR: test_warning_paralleli_nodi_invertiti\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_warning_paralleli_nodi_invertiti\n\n";
     return EXIT_SUCCESS;
 }
-
 
 
 // Tests: ERRORS (ok = false)
@@ -288,7 +287,7 @@ static int test_error_riga_malformata()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_riga_malformata: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_riga_malformata: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_riga_malformata\n\n";
@@ -302,7 +301,7 @@ static int test_error_battitura_numero()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_battitura_numero: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_battitura_numero: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_battitura_numero\n\n";
@@ -316,7 +315,7 @@ static int test_error_tipo_sconosciuto()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_tipo_sconosciuto: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_tipo_sconosciuto: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_tipo_sconosciuto\n\n";
@@ -330,7 +329,7 @@ static int test_error_nodi_uguali()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_nodi_uguali: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_nodi_uguali: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_nodi_uguali\n\n";
@@ -344,7 +343,7 @@ static int test_error_nodo_non_positivo()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_nodo_non_positivo (nodo 0)\n\n";
+        std::cerr << "ERROR: test_error_nodo_non_positivo (node 0)\n\n";
         return EXIT_FAILURE;
     }
 
@@ -352,7 +351,7 @@ static int test_error_nodo_non_positivo()
     Output res2 = parse_netlist(path2);
 
     if (res2.ok) {
-        std::cerr << "ERRORE: test_error_nodo_non_positivo (nodo -3)\n\n";
+        std::cerr << "ERROR: test_error_nodo_non_positivo (node -3)\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_nodo_non_positivo\n\n";
@@ -366,7 +365,7 @@ static int test_error_resistenza_zero()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_resistenza_zero: doveva fallire\n\n";
+        std::cerr << "ERROE: test_error_resistenza_zero: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_resistenza_zero\n\n";
@@ -379,7 +378,7 @@ static int test_error_file_inesistente()
     Output res = parse_netlist("__file_che_non_esiste_12345__.txt");
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_file_inesistente: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_file_inesistente: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_file_inesistente\n\n";
@@ -393,7 +392,7 @@ static int test_error_nodo_decimale()
     Output res = parse_netlist(path);
 
     if (res.ok) {
-        std::cerr << "ERRORE: test_error_nodo_decimale: doveva fallire\n\n";
+        std::cerr << "ERROR: test_error_nodo_decimale: had to fail\n\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_error_nodo_decimale\n\n";
@@ -435,10 +434,10 @@ int main()
 
 
     if (falliti == 0) {
-        std::cout << "\nTutti i test del parser sono passati.\n";
+        std::cout << "\nAll the parser tests have passed.\n";
         return EXIT_SUCCESS;
     } else {
-        std::cerr << "\n" << falliti << " test falliti.\n";
+        std::cerr << "\n" << falliti << " failed tests.\n";
         return EXIT_FAILURE;
     }
 }

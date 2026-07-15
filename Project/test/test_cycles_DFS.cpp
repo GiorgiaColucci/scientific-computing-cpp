@@ -47,7 +47,7 @@ static int test_cicli_dfs_albero()
 {
     auto cicli = cicli_DFS(F_albero);
     if (!cicli.empty()) {
-        std::cerr << "ERRORE: test_cicli_dfs_albero: attesi 0 cicli, trovati "
+        std::cerr << "ERROR: test_cicli_dfs_albero: expected 0 cycles, found "
                    << cicli.size() << "\n";
         return EXIT_FAILURE;
     }
@@ -64,8 +64,8 @@ static int test_cicli_dfs_numero()
     const int attesi = m - n + 1;
  
     if (static_cast<int>(cicli.size()) != attesi) {
-        std::cerr << "ERRORE: test_cicli_dfs_numero: attesi " << attesi
-                   << " cicli, trovati " << cicli.size() << "\n";
+        std::cerr << "ERROR: test_cicli_dfs_numero: expected " << attesi
+                   << " cycles, found " << cicli.size() << "\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_cicli_dfs_numero\n";
@@ -79,7 +79,7 @@ static int test_cicli_dfs_validita()
  
     for (std::size_t i = 0; i < cicli.size(); i++) {
         if (!is_ciclo_valido(G_ciclico, cicli[i])) {
-            std::cerr << "ERRORE: test_cicli_dfs_validita: ciclo " << i << " non valido\n";
+            std::cerr << "ERROR: test_cicli_dfs_validita: cycle " << i << " invalid\n";
             return EXIT_FAILURE;
         }
     }
@@ -103,7 +103,7 @@ static int test_cicli_dfs_indipendenza()
             }
         }
         if (!ha_arco_nuovo) {
-            std::cerr << "ERRORE: test_cicli_dfs_indipendenza: ciclo senza arco nuovo\n";
+            std::cerr << "ERROR: test_cicli_dfs_indipendenza: cycle without a new edge\n";
             return EXIT_FAILURE;
         }
     }
@@ -130,10 +130,10 @@ int main()
     falliti += test_cicli_dfs_indipendenza() == EXIT_SUCCESS ? 0 : 1;
  
     if (falliti == 0) {
-        std::cout << "\nTutti i test sui cicli DFS sono passati.\n";
+        std::cout << "\nAll the cycles DFS tests have passed.\n";
         return EXIT_SUCCESS;
     } else {
-        std::cerr << "\n" << falliti << " test falliti.\n";
+        std::cerr << "\n" << falliti << " failed test.\n";
         return EXIT_FAILURE;
     }
 }

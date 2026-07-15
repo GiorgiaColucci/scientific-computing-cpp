@@ -50,8 +50,8 @@ static const std::map<std::string, Riferimento> RIFERIMENTO = {
 static bool risultati_corretti(const RisultatoCircuit& r, const std::string& nome_test)
 {
     if (r.nomi_resistori.size() != RIFERIMENTO.size()) {
-        std::cerr << "ERRORE: " << nome_test << ": attesi " << RIFERIMENTO.size()
-                   << " resistori, trovati " << r.nomi_resistori.size() << "\n";
+        std::cerr << "ERROR: " << nome_test << ": expected " << RIFERIMENTO.size()
+                   << " resistor, found " << r.nomi_resistori.size() << "\n";
         return false;
     }
 
@@ -60,18 +60,18 @@ static bool risultati_corretti(const RisultatoCircuit& r, const std::string& nom
         const std::string& nome = r.nomi_resistori[i];
         auto it = RIFERIMENTO.find(nome);
         if (it == RIFERIMENTO.end()) {
-            std::cerr << "ERRORE: " << nome_test << ": resistore sconosciuto \"" << nome << "\"\n";
+            std::cerr << "ERROR: " << nome_test << ": unknown resistor \"" << nome << "\"\n";
             ok = false;
             continue;
         }
         if (std::abs(r.tensioni[i] - it->second.tensione) > tol) {
-            std::cerr << "ERRORE: " << nome_test << ": " << nome
-                       << ": V = " << r.tensioni[i] << ", atteso " << it->second.tensione << "\n";
+            std::cerr << "ERROR: " << nome_test << ": " << nome
+                       << ": V = " << r.tensioni[i] << ", expected " << it->second.tensione << "\n";
             ok = false;
         }
         if (std::abs(r.correnti[i] - it->second.corrente) > tol) {
-            std::cerr << "ERRORE: " << nome_test << ": " << nome
-                       << ": I = " << r.correnti[i] << ", atteso " << it->second.corrente << "\n";
+            std::cerr << "ERROE: " << nome_test << ": " << nome
+                       << ": I = " << r.correnti[i] << ", expected " << it->second.corrente << "\n";
             ok = false;
         }
     }
@@ -109,7 +109,7 @@ int main()
     // If the file is not found we exit immediately, without crashing inside the test functions
     dati = parse_netlist(NETLIST);
     if (!dati.ok) {
-        std::cerr << "ERRORE: impossibile leggere la netlist\n";
+        std::cerr << "ERROR: cannot read the netlist\n";
         return EXIT_FAILURE;
     }
 
@@ -120,10 +120,10 @@ int main()
     falliti += test_solve_depina() == EXIT_SUCCESS ? 0 : 1;
 
     if (falliti == 0) {
-        std::cout << "\nTutti i test del solver sono passati.\n";
+        std::cout << "\nAll the solver tests have passed.\n";
         return EXIT_SUCCESS;
     } else {
-        std::cerr << "\n" << falliti << " test falliti.\n";
+        std::cerr << "\n" << falliti << " failed tests.\n";
         return EXIT_FAILURE;
     }
 }

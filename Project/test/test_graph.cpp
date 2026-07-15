@@ -30,15 +30,15 @@ static const double tol = 1e-7;
 static int test_grafo_dim() 
 {
     if (!dati.ok) {
-        std::cerr << "ERRORE: parsing della netlist fallito\n";
+        std::cerr << "ERROR: netlist parsing failed\n";
         return EXIT_FAILURE;
     }
     if (G.all_nodes().size() != 5) {
-        std::cerr << "ERRORE: test_grafo_dim: attesi 5 nodi\n";
+        std::cerr << "ERROR: test_grafo_dim: expected 5 nodes\n";
         return EXIT_FAILURE;
     }
     if (G.all_edges().size() != 7) {
-        std::cerr << "ERRORE: test_grafo_dim: attesi 7 archi\n";
+        std::cerr << "ERRORE: test_grafo_dim: expected 7 edges\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_grafo_dim\n";
@@ -49,17 +49,17 @@ static int test_grafo_dim()
 static int test_grafo_tipologia()
 {
     if (edge_data_map.at(edge<int>(2,4)).tipologia != TipoComponente::Resistore) {
-        std::cerr << "ERRORE: test_grafo_tipologia: (2,4) doveva essere Resistore\n";
+        std::cerr << "ERROR: test_grafo_tipologia: (2,4) had to be Resistore\n";
         return EXIT_FAILURE;
     }
 
     if (edge_data_map.at(edge<int>(1,4)).tipologia != TipoComponente::Generatore) {
-        std::cerr << "ERRORE: test_grafo_tipologia: (1,4) doveva essere Generatore\n";
+        std::cerr << "ERROR: test_grafo_tipologia: (1,4) had to be Generatore\n";
         return EXIT_FAILURE;
     }
 
     if (edge_data_map.at(edge<int>(3,5)).tipologia != TipoComponente::Generatore) {
-        std::cerr << "ERRORE: test_grafo_tipologia: (3,5) doveva essere Generatore\n";
+        std::cerr << "ERROR: test_grafo_tipologia: (3,5) had to be Generatore\n";
         return EXIT_FAILURE;
     }
 
@@ -74,7 +74,7 @@ static int test_grafo_valori()
         std::abs(edge_data_map.at(edge<int>(1,2)).valori - 10.0) > tol ||  
         std::abs(edge_data_map.at(edge<int>(1,3)).valori - 30.0) > tol ||  
         std::abs(edge_data_map.at(edge<int>(1,4)).valori - 30.0) > tol) {  
-        std::cerr << "ERRORE: test_grafo_valori\n";
+        std::cerr << "ERROR: test_grafo_valori\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_grafo_valori\n";
@@ -85,15 +85,15 @@ static int test_grafo_valori()
 static int test_grafo_verso_positivo()
 {
     if (!edge_data_map.at(edge<int>(1,4)).verso_positivo) {
-        std::cerr << "ERRORE: test_grafo_verso_positivo: V1 (1->4) deve essere true\n";
+        std::cerr << "ERROR: test_grafo_verso_positivo: V1 (1->4) must be true\n";
         return EXIT_FAILURE;
     }
     if (edge_data_map.at(edge<int>(2,4)).verso_positivo) {
-        std::cerr << "ERRORE: test_grafo_verso_positivo: R1 (4->2) deve essere false\n";
+        std::cerr << "ERROR: test_grafo_verso_positivo: R1 (4->2) must be false\n";
         return EXIT_FAILURE;
     }
     if (!edge_data_map.at(edge<int>(1,2)).verso_positivo) {
-        std::cerr << "ERRORE: test_grafo_verso_positivo: R2 (1->2) deve essere true\n";
+        std::cerr << "ERROR: test_grafo_verso_positivo: R2 (1->2) must be true\n";
         return EXIT_FAILURE;
     }
     std::cout << "[OK] test_grafo_verso_positivo\n";
@@ -121,7 +121,7 @@ int main()
     // without crashing inside the test functions
     dati = parse_netlist(NETLIST);
     if (!dati.ok) {
-        std::cerr << "ERRORE: impossibile leggere la netlist\n";
+        std::cerr << "ERROR: cannot read the netlist\n";
         return EXIT_FAILURE;
     }
 
@@ -135,10 +135,10 @@ int main()
     falliti += test_grafo_verso_positivo()  == EXIT_SUCCESS ? 0 : 1;
  
     if (falliti == 0) {
-        std::cout << "\nTutti i test del grafo sono passati.\n";
+        std::cout << "\nAll the graph tests have passed.\n";
         return EXIT_SUCCESS;
     } else {
-        std::cerr << "\n" << falliti << " test falliti.\n";
+        std::cerr << "\n" << falliti << " failed tests.\n";
         return EXIT_FAILURE;
     }
 }
